@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0" />
+		<PackageVersion Include="SteamKit2" Version="2.4.1" />
+	</ItemGroup>
+</Project>

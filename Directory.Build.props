@@ -1,0 +1,50 @@
+<Project>
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Chr_</Authors>
+		<ApplicationIcon>../resources/icon.ico</ApplicationIcon>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<Company>chrxw.com</Company>
+		<Copyright>Copyright © 2023-$([System.DateTime]::UtcNow.Year) $(Company)</Copyright>
+		<Description>为ASFEnhance开发的工具软件</Description>
+		<Deterministic>true</Deterministic>
+		<ErrorReport>none</ErrorReport>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<NeutralLanguage>zh-cn</NeutralLanguage>
+		<Nullable>enable</Nullable>
+		<PackageLicenseExpression>AGPL-3.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/chr233/ASFEnhanceTools</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
+		<RepositoryBranch>main</RepositoryBranch>
+		<RepositoryType>Git</RepositoryType>
+		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
+		<RollForward>LatestMajor</RollForward>
+		<RuntimeIdentifiers>win-arm64;win-x64;win-x86</RuntimeIdentifiers>
+		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+		<TargetFramework>net7.0-windows</TargetFramework>
+	</PropertyGroup>
+
+	  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>portable</DebugType>
+	  </PropertyGroup>
+	
+	  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<DebuggerSupport>false</DebuggerSupport>
+		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+		<EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+		<EventSourceSupport>false</EventSourceSupport>
+		<HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+		<MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+		<UseNativeHttpHandler>false</UseNativeHttpHandler>
+		<TieredPGO>true</TieredPGO>
+	  </PropertyGroup>
+
+</Project>
