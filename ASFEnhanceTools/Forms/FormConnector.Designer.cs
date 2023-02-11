@@ -41,9 +41,10 @@
             this.ssBar = new System.Windows.Forms.StatusStrip();
             this.tsLbl1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsLblVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnAfadian = new System.Windows.Forms.Button();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsLblGitHub = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnAfadian = new System.Windows.Forms.Button();
+            this.btnSteam = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.ssBar.SuspendLayout();
@@ -185,6 +186,16 @@
             this.tsLblVersion.Size = new System.Drawing.Size(45, 17);
             this.tsLblVersion.Text = "0.0.0.0";
             // 
+            // btnAfadian
+            // 
+            this.btnAfadian.Location = new System.Drawing.Point(402, 203);
+            this.btnAfadian.Name = "btnAfadian";
+            this.btnAfadian.Size = new System.Drawing.Size(196, 40);
+            this.btnAfadian.TabIndex = 8;
+            this.btnAfadian.Text = "爱发电";
+            this.btnAfadian.UseVisualStyleBackColor = true;
+            this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
+            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -202,21 +213,22 @@
             this.tsLblGitHub.MouseEnter += new System.EventHandler(this.tsLblGitHub_MouseEnter);
             this.tsLblGitHub.MouseLeave += new System.EventHandler(this.tsLblGitHub_MouseLeave);
             // 
-            // btnAfadian
+            // btnSteam
             // 
-            this.btnAfadian.Location = new System.Drawing.Point(402, 96);
-            this.btnAfadian.Name = "btnAfadian";
-            this.btnAfadian.Size = new System.Drawing.Size(196, 40);
-            this.btnAfadian.TabIndex = 8;
-            this.btnAfadian.Text = "爱发电";
-            this.btnAfadian.UseVisualStyleBackColor = true;
-            this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
+            this.btnSteam.Location = new System.Drawing.Point(402, 157);
+            this.btnSteam.Name = "btnSteam";
+            this.btnSteam.Size = new System.Drawing.Size(196, 40);
+            this.btnSteam.TabIndex = 8;
+            this.btnSteam.Text = "Steam";
+            this.btnSteam.UseVisualStyleBackColor = true;
+            this.btnSteam.Click += new System.EventHandler(this.btnSteam_Click);
             // 
             // FormConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 414);
+            this.Controls.Add(this.btnSteam);
             this.Controls.Add(this.btnAfadian);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnGetASFEnhance);
@@ -249,11 +261,12 @@
         private GroupBox groupBox2;
         private GroupBox groupBox1;
         private Button btnCheckASFEToolsUpdate;
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripStatusLabel tsLbl1;
         private ToolStripStatusLabel tsLblVersion;
-        private ToolStripStatusLabel tsLblGitHub;
         private Button btnAfadian;
         private Label label1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripStatusLabel tsLblGitHub;
+        private Button btnSteam;
     }
 }

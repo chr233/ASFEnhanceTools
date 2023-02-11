@@ -21,7 +21,7 @@ namespace ASFEnhanceTools.Forms
 
         private void btnCheckASFEToolsUpdate_Click(object sender, EventArgs e)
         {
-            const string target = "https://github.com/chr233/ASFEnhance";
+            const string target = "https://github.com/chr233/ASFEnhanceTools";
             OpenLink(target);
         }
 
@@ -38,7 +38,14 @@ namespace ASFEnhanceTools.Forms
 
         private void btnAfadian_Click(object sender, EventArgs e)
         {
-            OpenLink("https://afdian.net/a/chr233");
+            const string target = "https://afdian.net/a/chr233";
+            OpenLink(target);
+        }
+
+        private void btnSteam_Click(object sender, EventArgs e)
+        {
+            const string target = "https://steamcommunity.com/id/Chr_/";
+            OpenLink(target);
         }
 
         private void FormConnector_Load(object sender, EventArgs e)
@@ -122,5 +129,7 @@ namespace ASFEnhanceTools.Forms
         {
             tsLblGitHub.Text = "GitHub";
         }
+
+
     }
 }
