@@ -327,6 +327,18 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
+        private void ckFakePurchase_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckFakePurchase.Checked)
+            {
+                btnPurchase.Text = "&P. 购买";
+            }
+            else
+            {
+                btnPurchase.Text = "&P. 卡单";
+            }
+        }
+
         private async void btnPurchase_Click(object sender, EventArgs e)
         {
             List<uint> subIds = new();
@@ -386,6 +398,7 @@ namespace ASFEnhanceTools.Forms
                             SubIds = subIds,
                             BundleIds = bundles,
                             SkipOwned = true,
+                            FakePurchase = ckFakePurchase.Checked,
                         };
 
                         using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase") {
@@ -430,5 +443,7 @@ namespace ASFEnhanceTools.Forms
                 btnQueryAppDetail.Enabled = true;
             }
         }
+
+
     }
 }
