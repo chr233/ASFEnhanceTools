@@ -45,6 +45,11 @@ namespace ASFEnhanceTools.Forms
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
             tsLblVersion.Text = version.ToString();
+#if DEBUG
+            txtAddress.Text = "http://localhost:1500";
+#else
+            txtAddress.Text = "http://localhost:1242";
+#endif
         }
 
         private async void btnTestConnection_Click(object sender, EventArgs e)

@@ -30,6 +30,7 @@
         {
             this.btnGetASFEnhance = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsLblGitHub = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnAfadian = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.ssBar.SuspendLayout();
@@ -73,6 +73,15 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "连接历史 (暂时没做)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(166, 133);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "todo";
             // 
             // groupBox1
             // 
@@ -117,7 +126,6 @@
             this.txtAddress.PlaceholderText = "http://localhost:1242";
             this.txtAddress.Size = new System.Drawing.Size(317, 23);
             this.txtAddress.TabIndex = 0;
-            this.txtAddress.Text = "http://localhost:1500";
             // 
             // txtPassword
             // 
@@ -203,15 +211,6 @@
             this.btnAfadian.Text = "爱发电";
             this.btnAfadian.UseVisualStyleBackColor = true;
             this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(166, 133);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "todo";
             // 
             // FormConnector
             // 
