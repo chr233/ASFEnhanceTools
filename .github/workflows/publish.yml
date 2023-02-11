@@ -124,7 +124,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/${{ env.PROJECT_NAME }}-win-x64-fde.zip
+          asset_path: out/win-x64-fde.zip
           asset_name: ${{ env.PROJECT_NAME }}-win-x64-fde.zip
           asset_content_type: application/zip
 
@@ -134,7 +134,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/${{ env.PROJECT_NAME }}-win-x64.zip
+          asset_path: out/win-x64.zip
           asset_name: ${{ env.PROJECT_NAME }}-win-x64.zip
           asset_content_type: application/zip
 
@@ -144,7 +144,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/${{ env.PROJECT_NAME }}-win-arm64-fde.zip
+          asset_path: out/win-arm64-fde.zip
           asset_name: ${{ env.PROJECT_NAME }}-win-arm64-fde.zip
           asset_content_type: application/zip
 
@@ -154,6 +154,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/${{ env.PROJECT_NAME }}-win-arm64.zip
+          asset_path: out/win-arm64.zip
           asset_name: ${{ env.PROJECT_NAME }}-win-arm64.zip
           asset_content_type: application/zip
