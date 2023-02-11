@@ -64,10 +64,10 @@
             this.colSubId = new System.Windows.Forms.ColumnHeader();
             this.colSubName = new System.Windows.Forms.ColumnHeader();
             this.colIsFree = new System.Windows.Forms.ColumnHeader();
+            this.tpTodo = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.cbBotSelector = new System.Windows.Forms.ComboBox();
             this.btnReloadBots = new System.Windows.Forms.Button();
-            this.tpTodo = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tpASFInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -458,6 +458,17 @@
             this.colIsFree.Text = "免费";
             this.colIsFree.Width = 40;
             // 
+            // tpTodo
+            // 
+            this.tpTodo.BackgroundImage = global::ASFEnhanceTools.Properties.Resources.jntm;
+            this.tpTodo.Location = new System.Drawing.Point(4, 26);
+            this.tpTodo.Name = "tpTodo";
+            this.tpTodo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpTodo.Size = new System.Drawing.Size(533, 466);
+            this.tpTodo.TabIndex = 2;
+            this.tpTodo.Text = "开发中……";
+            this.tpTodo.UseVisualStyleBackColor = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -480,6 +491,7 @@
             // 
             // btnReloadBots
             // 
+            this.btnReloadBots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReloadBots.Location = new System.Drawing.Point(465, 6);
             this.btnReloadBots.Name = "btnReloadBots";
             this.btnReloadBots.Size = new System.Drawing.Size(75, 25);
@@ -487,17 +499,6 @@
             this.btnReloadBots.Text = "刷新";
             this.btnReloadBots.UseVisualStyleBackColor = true;
             this.btnReloadBots.Click += new System.EventHandler(this.btnReloadBots_Click);
-            // 
-            // tpTodo
-            // 
-            this.tpTodo.BackgroundImage = global::ASFEnhanceTools.Properties.Resources.jntm;
-            this.tpTodo.Location = new System.Drawing.Point(4, 26);
-            this.tpTodo.Name = "tpTodo";
-            this.tpTodo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTodo.Size = new System.Drawing.Size(533, 466);
-            this.tpTodo.TabIndex = 2;
-            this.tpTodo.Text = "开发中……";
-            this.tpTodo.UseVisualStyleBackColor = true;
             // 
             // FormClient
             // 
