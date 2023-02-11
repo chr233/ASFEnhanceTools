@@ -93,24 +93,24 @@ namespace ASFEnhanceTools.Forms
                             }
                             else
                             {
-                                MessageBox.Show("尚未安装 ASFEnhance 插件，请先安装 ASFEnhance 插件。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(Langs.ASFEnhanceNotInstalled, Langs.Tips, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("连接失败, 请检查地址和密码是否填写正确", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Langs.ConnectFailed, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtAddress.Focus();
                         }
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(string.Format("连接出错：{0}", ex.Message), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format(Langs.ConnectError, ex.Message), Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("ASF API地址无效", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Langs.IPCAddressInvalid, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAddress.Focus();
                 }
             }
@@ -119,17 +119,5 @@ namespace ASFEnhanceTools.Forms
                 btnTestConnection.Enabled = true;
             }
         }
-
-        private void tsLblGitHub_MouseEnter(object sender, EventArgs e)
-        {
-            tsLblGitHub.Text = "点个星星秋梨膏";
-        }
-
-        private void tsLblGitHub_MouseLeave(object sender, EventArgs e)
-        {
-            tsLblGitHub.Text = "GitHub";
-        }
-
-
     }
 }

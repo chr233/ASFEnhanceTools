@@ -51,7 +51,7 @@ namespace ASFEnhanceTools.Forms
 
                 if (!flag)
                 {
-                    throw new Exception("连接至 ASF 失败");
+                    throw new Exception(Langs.ConnectToASFFailed);
                 }
                 flag = false;
 
@@ -84,7 +84,7 @@ namespace ASFEnhanceTools.Forms
 
                 if (!flag)
                 {
-                    throw new Exception("连接至 ASF 失败");
+                    throw new Exception(Langs.ConnectToASFFailed);
                 }
                 flag = false;
 
@@ -106,7 +106,7 @@ namespace ASFEnhanceTools.Forms
                             BotNames.Add(bot.BotName);
                             BotDataDict.Add(bot.BotName, bot);
 
-                            string nickname = bot.IsConnectedAndLoggedOn ? bot.Nickname : "未知";
+                            string nickname = bot.IsConnectedAndLoggedOn ? bot.Nickname : Langs.Unknown;
                             string balance = bot.IsConnectedAndLoggedOn ? bot.WalletBalance.ToString() : "---";
                             string currency = bot.IsConnectedAndLoggedOn ? bot.WalletCurrency.ToString() : "---";
 
@@ -114,14 +114,14 @@ namespace ASFEnhanceTools.Forms
                                 Text = bot.BotName,
                                 SubItems = {
                                     nickname,
-                                    bot.IsConnectedAndLoggedOn ? "在线" :"离线",
+                                    bot.IsConnectedAndLoggedOn ? Langs.Online :Langs.Offline,
                                     balance,
                                     currency,
                                     bot.SteamID.ToString(),
                                 }
                             });
 
-                            cbBotSelector.Items.Add(string.Format("机器人: {0} 昵称: {1} 余额: {2} {3} SteamId: {4}", bot.BotName, nickname, balance, currency, bot.SteamID));
+                            cbBotSelector.Items.Add(string.Format(Langs.BotListTemplete, bot.BotName, nickname, balance, currency, bot.SteamID));
                         }
 
                         if (cbBotSelector.Items.Count > 0)
@@ -139,12 +139,12 @@ namespace ASFEnhanceTools.Forms
 
                 if (!flag)
                 {
-                    throw new Exception("连接至 ASF 失败");
+                    throw new Exception(Langs.ConnectToASFFailed);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("出现意外错误：{0}", ex.Message));
+                MessageBox.Show(string.Format(Langs.ConnectErrorUnexpectedly, ex.Message));
             }
         }
 
@@ -175,7 +175,7 @@ namespace ASFEnhanceTools.Forms
 
                 if (bot == null)
                 {
-                    MessageBox.Show("未选择机器人");
+                    MessageBox.Show(Langs.NoBotSelected);
                     return;
                 }
 
@@ -225,25 +225,25 @@ namespace ASFEnhanceTools.Forms
                                 }
                                 else
                                 {
-                                    txtGameName.Text = "读取失败";
-                                    txtGameDesc.Text = "AppId 不存在 / 机器人可能离线";
+                                    txtGameName.Text = Langs.ReadFailed;
+                                    txtGameDesc.Text = Langs.AppIdNotExistsOrBotOffline;
                                     txtGameType.Text = "";
                                 }
                             }
                             else
                             {
-                                txtGameName.Text = "读取失败";
-                                txtGameDesc.Text = "找不到机器人";
+                                txtGameName.Text = Langs.ReadFailed;
+                                txtGameDesc.Text = Langs.botNotFound;
                                 txtGameType.Text = "";
                             }
                             return;
                         }
                     }
-                    MessageBox.Show("连接至 ASF 失败");
+                    MessageBox.Show(Langs.ConnectToASFFailed);
                 }
                 else
                 {
-                    MessageBox.Show("AppId 无效! 请输入整数", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Langs.AppIdIsInvalid, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAppId.Focus();
                 }
             }
@@ -299,14 +299,14 @@ namespace ASFEnhanceTools.Forms
                                 Text = bot.BotName,
                                 SubItems = {
                                     nickname,
-                                    bot.IsConnectedAndLoggedOn ? "在线" :"离线",
+                                    bot.IsConnectedAndLoggedOn ? Langs.Online :Langs.Offline,
                                     balance,
                                     currency,
                                     bot.SteamID.ToString(),
                                 }
                             });
 
-                            cbBotSelector.Items.Add(string.Format("机器人: {0} 昵称: {1} 余额: {2} {3} SteamId: {4}", bot.BotName, nickname, balance, currency, bot.SteamID));
+                            cbBotSelector.Items.Add(string.Format(Langs.BotListTemplete, bot.BotName, nickname, balance, currency, bot.SteamID));
                         }
 
                         if (cbBotSelector.Items.Count > 0)
@@ -319,7 +319,7 @@ namespace ASFEnhanceTools.Forms
                         return;
                     }
                 }
-                MessageBox.Show("连接至 ASF 失败");
+                MessageBox.Show(Langs.ConnectToASFFailed);
             }
             finally
             {
@@ -331,11 +331,11 @@ namespace ASFEnhanceTools.Forms
         {
             if (ckFakePurchase.Checked)
             {
-                btnPurchase.Text = "&P. 购买";
+                btnPurchase.Text = Langs.FakePurchase;
             }
             else
             {
-                btnPurchase.Text = "&P. 卡单";
+                btnPurchase.Text = Langs.Purchase;
             }
         }
 
@@ -374,19 +374,25 @@ namespace ASFEnhanceTools.Forms
 
             if (subIds.Count + bundles.Count == 0)
             {
-                MessageBox.Show("没有有效的 SubId / BundleId, 请检查输入", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Langs.NoValidSubIdsOrBundleIds, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSubsInput.Focus();
+                return;
+            }
+
+            if (ckFakePurchase.Checked &&
+                MessageBox.Show(Langs.DoYouReallyWantToPurchase, Langs.Confirm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+            {
                 return;
             }
 
             try
             {
-                btnQueryAppDetail.Enabled = false;
+                btnPurchase.Enabled = false;
                 var bot = FetchBot(cbBotSelector.SelectedIndex);
 
                 if (bot == null)
                 {
-                    MessageBox.Show("未选择机器人");
+                    MessageBox.Show(Langs.NoBotSelected);
                     return;
                 }
 
@@ -413,8 +419,8 @@ namespace ASFEnhanceTools.Forms
                             if (response.Result.TryGetValue(bot.BotName, out var result))
                             {
                                 var pResult = result.PurchaseResult;
-                                sb.AppendLine(string.Format("购买结果: {0} 余额变动: {1} -> {2} ({3})", pResult.Success ? "成功" : "失败", pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
-                                sb.AppendLine(string.Format("购物车总价: {0} ({1}), 购物车内容:", pResult.Cost, pResult.Currency));
+                                sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
+                                sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));
                                 int j = 1;
                                 foreach (var item in pResult.CartItems)
                                 {
@@ -423,24 +429,24 @@ namespace ASFEnhanceTools.Forms
                             }
                             else
                             {
-                                sb.AppendLine("找不到机器人");
+                                sb.AppendLine(Langs.botNotFound);
                             }
 
                             txtSubsOutput.Text = sb.ToString();
                             return;
                         }
                     }
-                    MessageBox.Show("连接至 ASF 失败");
+                    MessageBox.Show(Langs.ConnectToASFFailed);
                 }
                 else
                 {
-                    MessageBox.Show("AppId 无效! 请输入整数", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Langs.AppIdIsInvalid, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAppId.Focus();
                 }
             }
             finally
             {
-                btnQueryAppDetail.Enabled = true;
+                btnPurchase.Enabled = true;
             }
         }
 

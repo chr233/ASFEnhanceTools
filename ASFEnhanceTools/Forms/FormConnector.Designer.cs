@@ -189,7 +189,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(427, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(396, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // tsLblGitHub
@@ -200,8 +200,6 @@
             this.tsLblGitHub.Size = new System.Drawing.Size(67, 17);
             this.tsLblGitHub.Text = "By Chr233";
             this.tsLblGitHub.Click += new System.EventHandler(this.tsLblGitHub_Click);
-            this.tsLblGitHub.MouseEnter += new System.EventHandler(this.tsLblGitHub_MouseEnter);
-            this.tsLblGitHub.MouseLeave += new System.EventHandler(this.tsLblGitHub_MouseLeave);
             // 
             // btnAfadian
             // 
