@@ -94,7 +94,7 @@
             this.lvPlugins.Location = new System.Drawing.Point(0, 0);
             this.lvPlugins.Name = "lvPlugins";
             this.lvPlugins.Size = new System.Drawing.Size(527, 169);
-            this.lvPlugins.TabIndex = 0;
+            this.lvPlugins.TabIndex = 4;
             this.lvPlugins.UseCompatibleStateImageBehavior = false;
             this.lvPlugins.View = System.Windows.Forms.View.Details;
             // 
@@ -120,9 +120,9 @@
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(541, 496);
+            this.tabControl.Size = new System.Drawing.Size(601, 496);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl.TabIndex = 10;
+            this.tabControl.TabIndex = 2;
             // 
             // tpASFInfo
             // 
@@ -167,7 +167,7 @@
             this.lvBots.Location = new System.Drawing.Point(0, 0);
             this.lvBots.Name = "lvBots";
             this.lvBots.Size = new System.Drawing.Size(527, 287);
-            this.lvBots.TabIndex = 0;
+            this.lvBots.TabIndex = 3;
             this.lvBots.UseCompatibleStateImageBehavior = false;
             this.lvBots.View = System.Windows.Forms.View.Details;
             // 
@@ -208,7 +208,7 @@
             this.tpPurchase.Location = new System.Drawing.Point(4, 26);
             this.tpPurchase.Name = "tpPurchase";
             this.tpPurchase.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPurchase.Size = new System.Drawing.Size(533, 466);
+            this.tpPurchase.Size = new System.Drawing.Size(593, 466);
             this.tpPurchase.TabIndex = 1;
             this.tpPurchase.Text = "购物功能";
             this.tpPurchase.UseVisualStyleBackColor = true;
@@ -224,7 +224,7 @@
             this.groupBox2.Controls.Add(this.btnPurchase);
             this.groupBox2.Location = new System.Drawing.Point(7, 235);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(521, 225);
+            this.groupBox2.Size = new System.Drawing.Size(581, 225);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "购买游戏";
@@ -245,7 +245,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.txtSubsOutput);
-            this.splitContainer2.Size = new System.Drawing.Size(471, 197);
+            this.splitContainer2.Size = new System.Drawing.Size(531, 197);
             this.splitContainer2.SplitterDistance = 98;
             this.splitContainer2.TabIndex = 6;
             // 
@@ -258,8 +258,8 @@
             this.txtSubsInput.Name = "txtSubsInput";
             this.txtSubsInput.PlaceholderText = "一行一条, 可选前缀 s = sub, b = bundle, 不写前缀默认 sub, 例如 54029";
             this.txtSubsInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsInput.Size = new System.Drawing.Size(471, 98);
-            this.txtSubsInput.TabIndex = 0;
+            this.txtSubsInput.Size = new System.Drawing.Size(531, 98);
+            this.txtSubsInput.TabIndex = 11;
             this.txtSubsInput.WordWrap = false;
             // 
             // txtSubsOutput
@@ -270,8 +270,8 @@
             this.txtSubsOutput.Name = "txtSubsOutput";
             this.txtSubsOutput.ReadOnly = true;
             this.txtSubsOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsOutput.Size = new System.Drawing.Size(471, 95);
-            this.txtSubsOutput.TabIndex = 5;
+            this.txtSubsOutput.Size = new System.Drawing.Size(531, 95);
+            this.txtSubsOutput.TabIndex = 13;
             // 
             // label5
             // 
@@ -298,8 +298,8 @@
             this.btnPurchase.Location = new System.Drawing.Point(6, 78);
             this.btnPurchase.Name = "btnPurchase";
             this.btnPurchase.Size = new System.Drawing.Size(32, 89);
-            this.btnPurchase.TabIndex = 1;
-            this.btnPurchase.Text = "下单";
+            this.btnPurchase.TabIndex = 12;
+            this.btnPurchase.Text = "&P. 下单";
             this.btnPurchase.UseVisualStyleBackColor = true;
             this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
@@ -318,19 +318,20 @@
             this.groupBox1.Controls.Add(this.lvSubList);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 223);
+            this.groupBox1.Size = new System.Drawing.Size(581, 223);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "获取游戏信息";
             // 
             // txtGameType
             // 
-            this.txtGameType.Location = new System.Drawing.Point(457, 18);
+            this.txtGameType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGameType.Location = new System.Drawing.Point(517, 18);
             this.txtGameType.Name = "txtGameType";
             this.txtGameType.PlaceholderText = "类型";
             this.txtGameType.ReadOnly = true;
             this.txtGameType.Size = new System.Drawing.Size(58, 23);
-            this.txtGameType.TabIndex = 10;
+            this.txtGameType.TabIndex = 8;
             this.txtGameType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -347,24 +348,24 @@
             // 
             this.txtGameDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGameDesc.Location = new System.Drawing.Point(178, 47);
+            this.txtGameDesc.Location = new System.Drawing.Point(210, 47);
             this.txtGameDesc.Multiline = true;
             this.txtGameDesc.Name = "txtGameDesc";
             this.txtGameDesc.PlaceholderText = "游戏简介";
             this.txtGameDesc.ReadOnly = true;
-            this.txtGameDesc.Size = new System.Drawing.Size(337, 58);
-            this.txtGameDesc.TabIndex = 8;
+            this.txtGameDesc.Size = new System.Drawing.Size(365, 58);
+            this.txtGameDesc.TabIndex = 9;
             // 
             // txtGameName
             // 
             this.txtGameName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGameName.Location = new System.Drawing.Point(178, 18);
+            this.txtGameName.Location = new System.Drawing.Point(210, 18);
             this.txtGameName.Name = "txtGameName";
             this.txtGameName.PlaceholderText = "游戏名称";
             this.txtGameName.ReadOnly = true;
-            this.txtGameName.Size = new System.Drawing.Size(273, 23);
-            this.txtGameName.TabIndex = 8;
+            this.txtGameName.Size = new System.Drawing.Size(301, 23);
+            this.txtGameName.TabIndex = 7;
             // 
             // groupBox3
             // 
@@ -375,7 +376,7 @@
             this.groupBox3.Size = new System.Drawing.Size(153, 84);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "AppId";
+            this.groupBox3.Text = "&AppId";
             // 
             // txtAppId
             // 
@@ -385,7 +386,7 @@
             this.txtAppId.Name = "txtAppId";
             this.txtAppId.PlaceholderText = "单个游戏 AppId";
             this.txtAppId.Size = new System.Drawing.Size(141, 23);
-            this.txtAppId.TabIndex = 0;
+            this.txtAppId.TabIndex = 5;
             this.txtAppId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnQueryAppDetail
@@ -393,16 +394,15 @@
             this.btnQueryAppDetail.Location = new System.Drawing.Point(6, 51);
             this.btnQueryAppDetail.Name = "btnQueryAppDetail";
             this.btnQueryAppDetail.Size = new System.Drawing.Size(141, 28);
-            this.btnQueryAppDetail.TabIndex = 2;
-            this.btnQueryAppDetail.Text = "查询信息";
+            this.btnQueryAppDetail.TabIndex = 6;
+            this.btnQueryAppDetail.Text = "&Q. 查询信息";
             this.btnQueryAppDetail.UseVisualStyleBackColor = true;
             this.btnQueryAppDetail.Click += new System.EventHandler(this.btnQueryAppDetail_Click);
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 49);
+            this.label1.Location = new System.Drawing.Point(172, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 17);
             this.label1.TabIndex = 5;
@@ -410,9 +410,8 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(112, 21);
+            this.label6.Location = new System.Drawing.Point(172, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 17);
             this.label6.TabIndex = 5;
@@ -425,7 +424,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Sub 信息";
+            this.label2.Text = "&Sub 信息";
             // 
             // lvSubList
             // 
@@ -438,8 +437,8 @@
             this.lvSubList.FullRowSelect = true;
             this.lvSubList.Location = new System.Drawing.Point(70, 121);
             this.lvSubList.Name = "lvSubList";
-            this.lvSubList.Size = new System.Drawing.Size(445, 96);
-            this.lvSubList.TabIndex = 3;
+            this.lvSubList.Size = new System.Drawing.Size(505, 96);
+            this.lvSubList.TabIndex = 10;
             this.lvSubList.UseCompatibleStateImageBehavior = false;
             this.lvSubList.View = System.Windows.Forms.View.Details;
             this.lvSubList.DoubleClick += new System.EventHandler(this.lvSubList_DoubleClick);
@@ -474,9 +473,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.Size = new System.Drawing.Size(83, 17);
             this.label3.TabIndex = 3;
-            this.label3.Text = "选择机器人";
+            this.label3.Text = "&B. 选择机器人";
             // 
             // cbBotSelector
             // 
@@ -484,19 +483,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBotSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBotSelector.FormattingEnabled = true;
-            this.cbBotSelector.Location = new System.Drawing.Point(81, 6);
+            this.cbBotSelector.Location = new System.Drawing.Point(96, 6);
             this.cbBotSelector.Name = "cbBotSelector";
-            this.cbBotSelector.Size = new System.Drawing.Size(379, 25);
-            this.cbBotSelector.TabIndex = 2;
+            this.cbBotSelector.Size = new System.Drawing.Size(424, 25);
+            this.cbBotSelector.TabIndex = 0;
             // 
             // btnReloadBots
             // 
             this.btnReloadBots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReloadBots.Location = new System.Drawing.Point(465, 6);
+            this.btnReloadBots.Location = new System.Drawing.Point(525, 6);
             this.btnReloadBots.Name = "btnReloadBots";
             this.btnReloadBots.Size = new System.Drawing.Size(75, 25);
-            this.btnReloadBots.TabIndex = 11;
-            this.btnReloadBots.Text = "刷新";
+            this.btnReloadBots.TabIndex = 1;
+            this.btnReloadBots.Text = "&R. 刷新";
             this.btnReloadBots.UseVisualStyleBackColor = true;
             this.btnReloadBots.Click += new System.EventHandler(this.btnReloadBots_Click);
             // 
@@ -504,7 +503,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 535);
+            this.ClientSize = new System.Drawing.Size(607, 535);
             this.Controls.Add(this.btnReloadBots);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tabControl);

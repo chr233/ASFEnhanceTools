@@ -41,9 +41,9 @@
             this.ssBar = new System.Windows.Forms.StatusStrip();
             this.tsLbl1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsLblVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnAfadian = new System.Windows.Forms.Button();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsLblGitHub = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnAfadian = new System.Windows.Forms.Button();
             this.btnSteam = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -56,8 +56,8 @@
             this.btnGetASFEnhance.Location = new System.Drawing.Point(402, 295);
             this.btnGetASFEnhance.Name = "btnGetASFEnhance";
             this.btnGetASFEnhance.Size = new System.Drawing.Size(196, 37);
-            this.btnGetASFEnhance.TabIndex = 4;
-            this.btnGetASFEnhance.Text = "获取 ASFEnhance";
+            this.btnGetASFEnhance.TabIndex = 5;
+            this.btnGetASFEnhance.Text = "&E. 获取 ASFEnhance";
             this.btnGetASFEnhance.UseVisualStyleBackColor = true;
             this.btnGetASFEnhance.Click += new System.EventHandler(this.btnGetASFEnhance_Click);
             // 
@@ -98,46 +98,46 @@
             this.groupBox1.Size = new System.Drawing.Size(586, 78);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ASF IPC 设置";
+            this.groupBox1.Text = "ASF &IPC 设置";
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Location = new System.Drawing.Point(6, 22);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(55, 17);
+            this.lblAddress.Size = new System.Drawing.Size(70, 17);
             this.lblAddress.TabIndex = 1;
-            this.lblAddress.Text = "IPC 地址";
+            this.lblAddress.Text = "&A. IPC 地址";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Location = new System.Drawing.Point(6, 51);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(55, 17);
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
             this.lblPassword.TabIndex = 1;
-            this.lblPassword.Text = "IPC 密码";
+            this.lblPassword.Text = "&P. IPC 密码";
             // 
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(67, 19);
+            this.txtAddress.Location = new System.Drawing.Point(82, 19);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.PlaceholderText = "http://localhost:1242";
-            this.txtAddress.Size = new System.Drawing.Size(317, 23);
+            this.txtAddress.Size = new System.Drawing.Size(302, 23);
             this.txtAddress.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(67, 48);
+            this.txtPassword.Location = new System.Drawing.Point(82, 48);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.PlaceholderText = "默认为空";
-            this.txtPassword.Size = new System.Drawing.Size(317, 23);
-            this.txtPassword.TabIndex = 0;
+            this.txtPassword.Size = new System.Drawing.Size(302, 23);
+            this.txtPassword.TabIndex = 1;
             // 
             // btnTestConnection
             // 
@@ -145,8 +145,8 @@
             this.btnTestConnection.Location = new System.Drawing.Point(390, 19);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(190, 53);
-            this.btnTestConnection.TabIndex = 3;
-            this.btnTestConnection.Text = "开始连接";
+            this.btnTestConnection.TabIndex = 2;
+            this.btnTestConnection.Text = "&C. 开始连接";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
@@ -156,8 +156,8 @@
             this.btnCheckASFEToolsUpdate.Location = new System.Drawing.Point(402, 338);
             this.btnCheckASFEToolsUpdate.Name = "btnCheckASFEToolsUpdate";
             this.btnCheckASFEToolsUpdate.Size = new System.Drawing.Size(196, 37);
-            this.btnCheckASFEToolsUpdate.TabIndex = 4;
-            this.btnCheckASFEToolsUpdate.Text = "检查 ASFE Tools 更新";
+            this.btnCheckASFEToolsUpdate.TabIndex = 6;
+            this.btnCheckASFEToolsUpdate.Text = "&C. 检查 ASFE Tools 更新";
             this.btnCheckASFEToolsUpdate.UseVisualStyleBackColor = true;
             this.btnCheckASFEToolsUpdate.Click += new System.EventHandler(this.btnCheckASFEToolsUpdate_Click);
             // 
@@ -186,16 +186,6 @@
             this.tsLblVersion.Size = new System.Drawing.Size(45, 17);
             this.tsLblVersion.Text = "0.0.0.0";
             // 
-            // btnAfadian
-            // 
-            this.btnAfadian.Location = new System.Drawing.Point(402, 203);
-            this.btnAfadian.Name = "btnAfadian";
-            this.btnAfadian.Size = new System.Drawing.Size(196, 40);
-            this.btnAfadian.TabIndex = 8;
-            this.btnAfadian.Text = "爱发电";
-            this.btnAfadian.UseVisualStyleBackColor = true;
-            this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
-            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -213,13 +203,23 @@
             this.tsLblGitHub.MouseEnter += new System.EventHandler(this.tsLblGitHub_MouseEnter);
             this.tsLblGitHub.MouseLeave += new System.EventHandler(this.tsLblGitHub_MouseLeave);
             // 
+            // btnAfadian
+            // 
+            this.btnAfadian.Location = new System.Drawing.Point(402, 203);
+            this.btnAfadian.Name = "btnAfadian";
+            this.btnAfadian.Size = new System.Drawing.Size(196, 40);
+            this.btnAfadian.TabIndex = 4;
+            this.btnAfadian.Text = "&F. 爱发电";
+            this.btnAfadian.UseVisualStyleBackColor = true;
+            this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
+            // 
             // btnSteam
             // 
             this.btnSteam.Location = new System.Drawing.Point(402, 157);
             this.btnSteam.Name = "btnSteam";
             this.btnSteam.Size = new System.Drawing.Size(196, 40);
-            this.btnSteam.TabIndex = 8;
-            this.btnSteam.Text = "Steam";
+            this.btnSteam.TabIndex = 3;
+            this.btnSteam.Text = "&S. Steam";
             this.btnSteam.UseVisualStyleBackColor = true;
             this.btnSteam.Click += new System.EventHandler(this.btnSteam_Click);
             // 
