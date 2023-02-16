@@ -21,7 +21,7 @@ namespace ASFEnhanceTools.Forms
 
         private void btnCheckASFEToolsUpdate_Click(object sender, EventArgs e)
         {
-            const string target = "https://github.com/chr233/ASFEnhanceTools";
+            const string target = "https://github.com/chr233/ASFEnhanceTools/releases";
             OpenLink(target);
         }
 

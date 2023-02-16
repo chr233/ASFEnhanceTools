@@ -157,7 +157,7 @@
             this.btnCheckASFEToolsUpdate.Name = "btnCheckASFEToolsUpdate";
             this.btnCheckASFEToolsUpdate.Size = new System.Drawing.Size(196, 37);
             this.btnCheckASFEToolsUpdate.TabIndex = 6;
-            this.btnCheckASFEToolsUpdate.Text = "&C. 检查 ASFE Tools 更新";
+            this.btnCheckASFEToolsUpdate.Text = "&U. 检查 ASFE Tools 更新";
             this.btnCheckASFEToolsUpdate.UseVisualStyleBackColor = true;
             this.btnCheckASFEToolsUpdate.Click += new System.EventHandler(this.btnCheckASFEToolsUpdate_Click);
             // 
@@ -189,7 +189,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(396, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(427, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // tsLblGitHub

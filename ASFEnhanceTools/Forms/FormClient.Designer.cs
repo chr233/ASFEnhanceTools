@@ -43,13 +43,13 @@
             this.colSteamId = new System.Windows.Forms.ColumnHeader();
             this.tpPurchase = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPurchase = new System.Windows.Forms.Button();
             this.ckFakePurchase = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtSubsInput = new System.Windows.Forms.TextBox();
             this.txtSubsOutput = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnPurchase = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtGameType = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -65,6 +65,10 @@
             this.colSubId = new System.Windows.Forms.ColumnHeader();
             this.colSubName = new System.Windows.Forms.ColumnHeader();
             this.colIsFree = new System.Windows.Forms.ColumnHeader();
+            this.tpCmd = new System.Windows.Forms.TabPage();
+            this.btnSendCmd = new System.Windows.Forms.Button();
+            this.txtCmdRequest = new System.Windows.Forms.TextBox();
+            this.txtCmdResponse = new System.Windows.Forms.TextBox();
             this.tpTodo = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.cbBotSelector = new System.Windows.Forms.ComboBox();
@@ -83,6 +87,7 @@
             this.splitContainer2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tpCmd.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvPlugins
@@ -94,7 +99,7 @@
             this.lvPlugins.FullRowSelect = true;
             this.lvPlugins.Location = new System.Drawing.Point(0, 0);
             this.lvPlugins.Name = "lvPlugins";
-            this.lvPlugins.Size = new System.Drawing.Size(587, 204);
+            this.lvPlugins.Size = new System.Drawing.Size(564, 161);
             this.lvPlugins.TabIndex = 4;
             this.lvPlugins.UseCompatibleStateImageBehavior = false;
             this.lvPlugins.View = System.Windows.Forms.View.Details;
@@ -116,12 +121,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tpASFInfo);
             this.tabControl.Controls.Add(this.tpPurchase);
+            this.tabControl.Controls.Add(this.tpCmd);
             this.tabControl.Controls.Add(this.tpTodo);
             this.tabControl.Location = new System.Drawing.Point(3, 37);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(601, 587);
+            this.tabControl.Size = new System.Drawing.Size(578, 472);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 2;
             // 
@@ -131,7 +137,7 @@
             this.tpASFInfo.Location = new System.Drawing.Point(4, 26);
             this.tpASFInfo.Name = "tpASFInfo";
             this.tpASFInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpASFInfo.Size = new System.Drawing.Size(593, 557);
+            this.tpASFInfo.Size = new System.Drawing.Size(570, 442);
             this.tpASFInfo.TabIndex = 0;
             this.tpASFInfo.Text = "ASF 信息";
             this.tpASFInfo.UseVisualStyleBackColor = true;
@@ -150,8 +156,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lvPlugins);
-            this.splitContainer1.Size = new System.Drawing.Size(587, 551);
-            this.splitContainer1.SplitterDistance = 343;
+            this.splitContainer1.Size = new System.Drawing.Size(564, 436);
+            this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 2;
             // 
             // lvBots
@@ -167,7 +173,7 @@
             this.lvBots.FullRowSelect = true;
             this.lvBots.Location = new System.Drawing.Point(0, 0);
             this.lvBots.Name = "lvBots";
-            this.lvBots.Size = new System.Drawing.Size(587, 343);
+            this.lvBots.Size = new System.Drawing.Size(564, 271);
             this.lvBots.TabIndex = 3;
             this.lvBots.UseCompatibleStateImageBehavior = false;
             this.lvBots.View = System.Windows.Forms.View.Details;
@@ -209,7 +215,7 @@
             this.tpPurchase.Location = new System.Drawing.Point(4, 26);
             this.tpPurchase.Name = "tpPurchase";
             this.tpPurchase.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPurchase.Size = new System.Drawing.Size(593, 557);
+            this.tpPurchase.Size = new System.Drawing.Size(570, 442);
             this.tpPurchase.TabIndex = 1;
             this.tpPurchase.Text = "购物功能";
             this.tpPurchase.UseVisualStyleBackColor = true;
@@ -219,22 +225,33 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btnPurchase);
             this.groupBox2.Controls.Add(this.ckFakePurchase);
             this.groupBox2.Controls.Add(this.splitContainer2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.btnPurchase);
             this.groupBox2.Location = new System.Drawing.Point(7, 235);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(581, 316);
+            this.groupBox2.Size = new System.Drawing.Size(558, 204);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "购买游戏 【卡单功能需要 ASFEnhance 1.7.14.0 以及之后的版本才支持】";
             // 
+            // btnPurchase
+            // 
+            this.btnPurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPurchase.Location = new System.Drawing.Point(8, 111);
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(56, 60);
+            this.btnPurchase.TabIndex = 12;
+            this.btnPurchase.Text = "&P. 购买";
+            this.btnPurchase.UseVisualStyleBackColor = true;
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
+            // 
             // ckFakePurchase
             // 
             this.ckFakePurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ckFakePurchase.Location = new System.Drawing.Point(8, 93);
+            this.ckFakePurchase.Location = new System.Drawing.Point(8, 57);
             this.ckFakePurchase.Name = "ckFakePurchase";
             this.ckFakePurchase.Size = new System.Drawing.Size(56, 48);
             this.ckFakePurchase.TabIndex = 13;
@@ -258,8 +275,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.txtSubsOutput);
-            this.splitContainer2.Size = new System.Drawing.Size(505, 288);
-            this.splitContainer2.SplitterDistance = 142;
+            this.splitContainer2.Size = new System.Drawing.Size(482, 176);
+            this.splitContainer2.SplitterDistance = 86;
             this.splitContainer2.TabIndex = 6;
             // 
             // txtSubsInput
@@ -271,7 +288,7 @@
             this.txtSubsInput.Name = "txtSubsInput";
             this.txtSubsInput.PlaceholderText = "一行一条, 可选前缀 s = sub, b = bundle, 不写前缀默认 sub, 例如 54029";
             this.txtSubsInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsInput.Size = new System.Drawing.Size(505, 142);
+            this.txtSubsInput.Size = new System.Drawing.Size(482, 86);
             this.txtSubsInput.TabIndex = 11;
             this.txtSubsInput.WordWrap = false;
             // 
@@ -283,14 +300,14 @@
             this.txtSubsOutput.Name = "txtSubsOutput";
             this.txtSubsOutput.ReadOnly = true;
             this.txtSubsOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsOutput.Size = new System.Drawing.Size(505, 142);
+            this.txtSubsOutput.Size = new System.Drawing.Size(482, 86);
             this.txtSubsOutput.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 293);
+            this.label5.Location = new System.Drawing.Point(18, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 17);
             this.label5.TabIndex = 4;
@@ -304,17 +321,6 @@
             this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "输入";
-            // 
-            // btnPurchase
-            // 
-            this.btnPurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnPurchase.Location = new System.Drawing.Point(8, 147);
-            this.btnPurchase.Name = "btnPurchase";
-            this.btnPurchase.Size = new System.Drawing.Size(56, 71);
-            this.btnPurchase.TabIndex = 12;
-            this.btnPurchase.Text = "&P. 购买";
-            this.btnPurchase.UseVisualStyleBackColor = true;
-            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
             // groupBox1
             // 
@@ -331,7 +337,7 @@
             this.groupBox1.Controls.Add(this.lvSubList);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(581, 223);
+            this.groupBox1.Size = new System.Drawing.Size(557, 223);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "获取游戏信息";
@@ -339,7 +345,7 @@
             // txtGameType
             // 
             this.txtGameType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGameType.Location = new System.Drawing.Point(517, 18);
+            this.txtGameType.Location = new System.Drawing.Point(493, 18);
             this.txtGameType.Name = "txtGameType";
             this.txtGameType.PlaceholderText = "类型";
             this.txtGameType.ReadOnly = true;
@@ -366,7 +372,7 @@
             this.txtGameDesc.Name = "txtGameDesc";
             this.txtGameDesc.PlaceholderText = "游戏简介";
             this.txtGameDesc.ReadOnly = true;
-            this.txtGameDesc.Size = new System.Drawing.Size(365, 58);
+            this.txtGameDesc.Size = new System.Drawing.Size(341, 58);
             this.txtGameDesc.TabIndex = 9;
             // 
             // txtGameName
@@ -377,7 +383,7 @@
             this.txtGameName.Name = "txtGameName";
             this.txtGameName.PlaceholderText = "游戏名称";
             this.txtGameName.ReadOnly = true;
-            this.txtGameName.Size = new System.Drawing.Size(301, 23);
+            this.txtGameName.Size = new System.Drawing.Size(277, 23);
             this.txtGameName.TabIndex = 7;
             // 
             // groupBox3
@@ -450,7 +456,7 @@
             this.lvSubList.FullRowSelect = true;
             this.lvSubList.Location = new System.Drawing.Point(70, 121);
             this.lvSubList.Name = "lvSubList";
-            this.lvSubList.Size = new System.Drawing.Size(505, 96);
+            this.lvSubList.Size = new System.Drawing.Size(481, 96);
             this.lvSubList.TabIndex = 10;
             this.lvSubList.UseCompatibleStateImageBehavior = false;
             this.lvSubList.View = System.Windows.Forms.View.Details;
@@ -470,13 +476,60 @@
             this.colIsFree.Text = "免费";
             this.colIsFree.Width = 40;
             // 
+            // tpCmd
+            // 
+            this.tpCmd.Controls.Add(this.btnSendCmd);
+            this.tpCmd.Controls.Add(this.txtCmdRequest);
+            this.tpCmd.Controls.Add(this.txtCmdResponse);
+            this.tpCmd.Location = new System.Drawing.Point(4, 26);
+            this.tpCmd.Name = "tpCmd";
+            this.tpCmd.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCmd.Size = new System.Drawing.Size(570, 442);
+            this.tpCmd.TabIndex = 3;
+            this.tpCmd.Text = "命令行";
+            this.tpCmd.UseVisualStyleBackColor = true;
+            // 
+            // btnSendCmd
+            // 
+            this.btnSendCmd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendCmd.Location = new System.Drawing.Point(467, 413);
+            this.btnSendCmd.Name = "btnSendCmd";
+            this.btnSendCmd.Size = new System.Drawing.Size(97, 23);
+            this.btnSendCmd.TabIndex = 2;
+            this.btnSendCmd.Text = "&S. 发送";
+            this.btnSendCmd.UseVisualStyleBackColor = true;
+            this.btnSendCmd.Click += new System.EventHandler(this.btnSendCmd_Click);
+            // 
+            // txtCmdRequest
+            // 
+            this.txtCmdRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCmdRequest.Location = new System.Drawing.Point(6, 413);
+            this.txtCmdRequest.Name = "txtCmdRequest";
+            this.txtCmdRequest.Size = new System.Drawing.Size(455, 23);
+            this.txtCmdRequest.TabIndex = 1;
+            this.txtCmdRequest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCmdRequest_KeyPress);
+            // 
+            // txtCmdResponse
+            // 
+            this.txtCmdResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCmdResponse.Location = new System.Drawing.Point(0, 0);
+            this.txtCmdResponse.Multiline = true;
+            this.txtCmdResponse.Name = "txtCmdResponse";
+            this.txtCmdResponse.ReadOnly = true;
+            this.txtCmdResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtCmdResponse.Size = new System.Drawing.Size(570, 407);
+            this.txtCmdResponse.TabIndex = 0;
+            // 
             // tpTodo
             // 
             this.tpTodo.BackgroundImage = global::ASFEnhanceTools.Properties.Resources.jntm;
             this.tpTodo.Location = new System.Drawing.Point(4, 26);
             this.tpTodo.Name = "tpTodo";
             this.tpTodo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTodo.Size = new System.Drawing.Size(593, 557);
+            this.tpTodo.Size = new System.Drawing.Size(570, 442);
             this.tpTodo.TabIndex = 2;
             this.tpTodo.Text = "开发中……";
             this.tpTodo.UseVisualStyleBackColor = true;
@@ -498,13 +551,13 @@
             this.cbBotSelector.FormattingEnabled = true;
             this.cbBotSelector.Location = new System.Drawing.Point(96, 6);
             this.cbBotSelector.Name = "cbBotSelector";
-            this.cbBotSelector.Size = new System.Drawing.Size(424, 25);
+            this.cbBotSelector.Size = new System.Drawing.Size(401, 25);
             this.cbBotSelector.TabIndex = 0;
             // 
             // btnReloadBots
             // 
             this.btnReloadBots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReloadBots.Location = new System.Drawing.Point(525, 6);
+            this.btnReloadBots.Location = new System.Drawing.Point(502, 6);
             this.btnReloadBots.Name = "btnReloadBots";
             this.btnReloadBots.Size = new System.Drawing.Size(75, 25);
             this.btnReloadBots.TabIndex = 1;
@@ -516,11 +569,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 626);
+            this.ClientSize = new System.Drawing.Size(584, 511);
             this.Controls.Add(this.btnReloadBots);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.cbBotSelector);
+            this.MinimumSize = new System.Drawing.Size(600, 550);
             this.Name = "FormClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormClient_Load);
@@ -543,6 +597,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tpCmd.ResumeLayout(false);
+            this.tpCmd.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,5 +646,9 @@
         private Button btnReloadBots;
         private TabPage tpTodo;
         private CheckBox ckFakePurchase;
+        private TabPage tpCmd;
+        private Button btnSendCmd;
+        private TextBox txtCmdRequest;
+        private TextBox txtCmdResponse;
     }
 }

@@ -450,6 +450,59 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
+        private void txtCmdRequest_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSendCmd_Click(sender, e);
+            }
+        }
 
+        private async void btnSendCmd_Click(object sender, EventArgs e)
+        {
+            string cmd = txtCmdRequest.Text.Trim();
+
+            if (string.IsNullOrEmpty(cmd))
+            {
+                return;
+            }
+
+            try
+            {
+                btnSendCmd.Enabled = false;
+
+                for (int i = 0; i < MaxTries; i++)
+                {
+                    var payload = new CommandRequest {
+                        Command = cmd,
+                    };
+
+                    if (!string.IsNullOrEmpty(txtCmdResponse.Text))
+                    {
+                        txtCmdResponse.Text += "\r\n\r\n";
+                    }
+                    txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n" + cmd +"\r\n";
+
+                    using var request = new HttpRequestMessage(HttpMethod.Post, "/Api/Command") {
+                        Content = JsonContent.Create(payload)
+                    };
+                    var response = await _httpClient.SendToObj<CommandResponse>(request);
+
+                    if (response != null && response.Success && response.Result != null)
+                    {
+                        txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n";
+                        txtCmdResponse.Text +=  response.Result;
+                        txtCmdRequest.Clear();
+                        txtCmdRequest.Focus();
+                        return;
+                    }
+                }
+                MessageBox.Show(Langs.ConnectToASFFailed);
+            }
+            finally
+            {
+                btnSendCmd.Enabled = true;
+            }
+        }
     }
 }
