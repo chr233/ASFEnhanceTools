@@ -400,7 +400,7 @@ namespace ASFEnhanceTools.Forms
                     var payload = new PurchaseRequest {
                         SubIds = subIds,
                         BundleIds = bundles,
-                        SkipOwned = true,
+                        SkipOwned = ckSkipOwned.Checked,
                         FakePurchase = ckFakePurchase.Checked,
                     };
 
