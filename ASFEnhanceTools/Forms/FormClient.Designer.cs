@@ -43,6 +43,7 @@
             this.colSteamId = new System.Windows.Forms.ColumnHeader();
             this.tpPurchase = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ckSkipOwned = new System.Windows.Forms.CheckBox();
             this.btnPurchase = new System.Windows.Forms.Button();
             this.ckFakePurchase = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -73,7 +74,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbBotSelector = new System.Windows.Forms.ComboBox();
             this.btnReloadBots = new System.Windows.Forms.Button();
-            this.ckSkipOwned = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tpASFInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -239,6 +239,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "购买游戏 【卡单功能需要 ASFEnhance 1.7.14.0 以及之后的版本才支持】";
             // 
+            // ckSkipOwned
+            // 
+            this.ckSkipOwned.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ckSkipOwned.AutoSize = true;
+            this.ckSkipOwned.Checked = true;
+            this.ckSkipOwned.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckSkipOwned.Location = new System.Drawing.Point(5, 52);
+            this.ckSkipOwned.Name = "ckSkipOwned";
+            this.ckSkipOwned.Size = new System.Drawing.Size(87, 21);
+            this.ckSkipOwned.TabIndex = 14;
+            this.ckSkipOwned.Text = "检查已拥有";
+            this.ckSkipOwned.UseVisualStyleBackColor = true;
+            // 
             // btnPurchase
             // 
             this.btnPurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -319,7 +332,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 25);
+            this.label4.Location = new System.Drawing.Point(32, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 3;
@@ -567,18 +580,6 @@
             this.btnReloadBots.Text = "&R. 刷新";
             this.btnReloadBots.UseVisualStyleBackColor = true;
             this.btnReloadBots.Click += new System.EventHandler(this.btnReloadBots_Click);
-            // 
-            // ckSkipOwned
-            // 
-            this.ckSkipOwned.AutoSize = true;
-            this.ckSkipOwned.Checked = true;
-            this.ckSkipOwned.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckSkipOwned.Location = new System.Drawing.Point(5, 52);
-            this.ckSkipOwned.Name = "ckSkipOwned";
-            this.ckSkipOwned.Size = new System.Drawing.Size(87, 21);
-            this.ckSkipOwned.TabIndex = 14;
-            this.ckSkipOwned.Text = "检查已拥有";
-            this.ckSkipOwned.UseVisualStyleBackColor = true;
             // 
             // FormClient
             // 

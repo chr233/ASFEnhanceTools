@@ -1,6 +1,7 @@
 ﻿using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using BotData = ASFEnhanceTools.Data.BotResponse.ResultData;
@@ -43,7 +44,7 @@ namespace ASFEnhanceTools.Forms
 
                     if (responseASF != null && responseASF.Success && responseASF.Result != null)
                     {
-                        Text = string.Format("Url: {0} - ASF: {1} {2}", _httpClient.BaseAddress, responseASF.Result.Version, responseASF.Result.BuildVariant);
+                        Text = string.Format("Url: {0} - ASF: {1}", _httpClient.BaseAddress, responseASF.Result.Version);
                         flag = true;
                         break;
                     }
@@ -72,7 +73,8 @@ namespace ASFEnhanceTools.Forms
 
                             if (plugin.Name == "ASFEnhance")
                             {
-                                Text += string.Format(" ASFEnhance: {0}", plugin.Version);
+                                var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
+                                Text += string.Format(" - ASFE: {0} - ASFET: {1}", plugin.Version, version);
                             }
                         }
                         lvPlugins.EndUpdate();
