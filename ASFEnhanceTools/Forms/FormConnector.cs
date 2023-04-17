@@ -52,11 +52,16 @@ namespace ASFEnhanceTools.Forms
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
             tsLblVersion.Text = version.ToString();
-#if DEBUG
-            txtAddress.Text = "http://localhost:1500";
-#else
-            txtAddress.Text = "http://localhost:1242";
-#endif
+            
+            txtAddress.Text = Properties.GlobalConfig.Default.IPCAddress;
+            txtPassword.Text = Properties.GlobalConfig.Default.IPCPassword;
+        }
+
+        private void FormConnector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.GlobalConfig.Default.IPCAddress = txtAddress.Text;
+            Properties.GlobalConfig.Default.IPCPassword = txtPassword.Text;
+            Properties.GlobalConfig.Default.Save();
         }
 
         private async void btnTestConnection_Click(object sender, EventArgs e)
@@ -119,5 +124,7 @@ namespace ASFEnhanceTools.Forms
                 btnTestConnection.Enabled = true;
             }
         }
+
+
     }
 }

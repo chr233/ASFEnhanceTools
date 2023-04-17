@@ -14,6 +14,11 @@
 		<Compile Update="Forms\FormConnector.cs">
 			<CustomToolNamespace></CustomToolNamespace>
 		</Compile>
+		<Compile Update="Properties\GlobalConfig.Designer.cs">
+		  <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>GlobalConfig.settings</DependentUpon>
+		</Compile>
 		<Compile Update="Localization\Langs.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -45,6 +50,13 @@
 
 	<ItemGroup>
 	  <Using Include="ASFEnhanceTools.Localization" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Properties\GlobalConfig.settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>GlobalConfig.Designer.cs</LastGenOutput>
+	  </None>
 	</ItemGroup>
 
 </Project>

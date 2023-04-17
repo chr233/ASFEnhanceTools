@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ASFEnhanceTools" GeneratedClassName="GlobalConfig">
+  <Profiles />
+  <Settings>
+    <Setting Name="IPCAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://127.0.0.1:1242</Value>
+    </Setting>
+    <Setting Name="IPCPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
