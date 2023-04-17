@@ -1,6 +1,7 @@
 ﻿using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using BotData = ASFEnhanceTools.Data.BotResponse.ResultData;
@@ -43,7 +44,7 @@ namespace ASFEnhanceTools.Forms
 
                     if (responseASF != null && responseASF.Success && responseASF.Result != null)
                     {
-                        Text = string.Format("Url: {0} - ASF: {1} {2}", _httpClient.BaseAddress, responseASF.Result.Version, responseASF.Result.BuildVariant);
+                        Text = string.Format("Url: {0} - ASF: {1}", _httpClient.BaseAddress, responseASF.Result.Version);
                         flag = true;
                         break;
                     }
@@ -72,7 +73,8 @@ namespace ASFEnhanceTools.Forms
 
                             if (plugin.Name == "ASFEnhance")
                             {
-                                Text += string.Format(" ASFEnhance: {0}", plugin.Version);
+                                var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
+                                Text += string.Format(" - ASFE: {0} - ASFET: {1}", plugin.Version, version);
                             }
                         }
                         lvPlugins.EndUpdate();
@@ -379,7 +381,7 @@ namespace ASFEnhanceTools.Forms
                 return;
             }
 
-            if (ckFakePurchase.Checked &&
+            if (!ckFakePurchase.Checked &&
                 MessageBox.Show(Langs.DoYouReallyWantToPurchase, Langs.Confirm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
             {
                 return;
@@ -395,54 +397,45 @@ namespace ASFEnhanceTools.Forms
                     MessageBox.Show(Langs.NoBotSelected);
                     return;
                 }
-
-                if (uint.TryParse(txtAppId.Text, out uint appId))
+                for (int i = 0; i < MaxTries; i++)
                 {
-                    for (int i = 0; i < MaxTries; i++)
+                    var payload = new PurchaseRequest {
+                        SubIds = subIds,
+                        BundleIds = bundles,
+                        SkipOwned = ckSkipOwned.Checked,
+                        FakePurchase = ckFakePurchase.Checked,
+                    };
+
+                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase") {
+                        Content = JsonContent.Create(payload)
+                    };
+                    var response = await _httpClient.SendToObj<PurchaseResponse>(request);
+
+                    if (response != null && response.Success && response.Result != null)
                     {
-                        var payload = new PurchaseRequest {
-                            SubIds = subIds,
-                            BundleIds = bundles,
-                            SkipOwned = true,
-                            FakePurchase = ckFakePurchase.Checked,
-                        };
+                        StringBuilder sb = new();
 
-                        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase") {
-                            Content = JsonContent.Create(payload)
-                        };
-                        var response = await _httpClient.SendToObj<PurchaseResponse>(request);
-
-                        if (response != null && response.Success && response.Result != null)
+                        if (response.Result.TryGetValue(bot.BotName, out var result))
                         {
-                            StringBuilder sb = new();
-
-                            if (response.Result.TryGetValue(bot.BotName, out var result))
+                            var pResult = result.PurchaseResult;
+                            sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
+                            sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));
+                            int j = 1;
+                            foreach (var item in pResult.CartItems)
                             {
-                                var pResult = result.PurchaseResult;
-                                sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
-                                sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));
-                                int j = 1;
-                                foreach (var item in pResult.CartItems)
-                                {
-                                    sb.AppendLine(string.Format(" {0}: {1}/{2} {3}", j++, item.Type, item.Id, item.Name));
-                                }
+                                sb.AppendLine(string.Format(" {0}: {1}/{2} {3}", j++, item.Type, item.Id, item.Name));
                             }
-                            else
-                            {
-                                sb.AppendLine(Langs.botNotFound);
-                            }
-
-                            txtSubsOutput.Text = sb.ToString();
-                            return;
                         }
+                        else
+                        {
+                            sb.AppendLine(Langs.botNotFound);
+                        }
+
+                        txtSubsOutput.Text = sb.ToString();
+                        return;
                     }
-                    MessageBox.Show(Langs.ConnectToASFFailed);
                 }
-                else
-                {
-                    MessageBox.Show(Langs.AppIdIsInvalid, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtAppId.Focus();
-                }
+                MessageBox.Show(Langs.ConnectToASFFailed);
             }
             finally
             {
@@ -481,7 +474,7 @@ namespace ASFEnhanceTools.Forms
                     {
                         txtCmdResponse.Text += "\r\n\r\n";
                     }
-                    txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n" + cmd +"\r\n";
+                    txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n" + cmd + "\r\n";
 
                     using var request = new HttpRequestMessage(HttpMethod.Post, "/Api/Command") {
                         Content = JsonContent.Create(payload)
@@ -491,7 +484,7 @@ namespace ASFEnhanceTools.Forms
                     if (response != null && response.Success && response.Result != null)
                     {
                         txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n";
-                        txtCmdResponse.Text +=  response.Result;
+                        txtCmdResponse.Text += response.Result;
                         txtCmdRequest.Clear();
                         txtCmdRequest.Focus();
                         return;

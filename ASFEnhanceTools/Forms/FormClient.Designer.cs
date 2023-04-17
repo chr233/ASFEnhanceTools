@@ -43,6 +43,7 @@
             this.colSteamId = new System.Windows.Forms.ColumnHeader();
             this.tpPurchase = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ckSkipOwned = new System.Windows.Forms.CheckBox();
             this.btnPurchase = new System.Windows.Forms.Button();
             this.ckFakePurchase = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -225,6 +226,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ckSkipOwned);
             this.groupBox2.Controls.Add(this.btnPurchase);
             this.groupBox2.Controls.Add(this.ckFakePurchase);
             this.groupBox2.Controls.Add(this.splitContainer2);
@@ -237,12 +239,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "购买游戏 【卡单功能需要 ASFEnhance 1.7.14.0 以及之后的版本才支持】";
             // 
+            // ckSkipOwned
+            // 
+            this.ckSkipOwned.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ckSkipOwned.AutoSize = true;
+            this.ckSkipOwned.Checked = true;
+            this.ckSkipOwned.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckSkipOwned.Location = new System.Drawing.Point(5, 52);
+            this.ckSkipOwned.Name = "ckSkipOwned";
+            this.ckSkipOwned.Size = new System.Drawing.Size(87, 21);
+            this.ckSkipOwned.TabIndex = 14;
+            this.ckSkipOwned.Text = "检查已拥有";
+            this.ckSkipOwned.UseVisualStyleBackColor = true;
+            // 
             // btnPurchase
             // 
             this.btnPurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnPurchase.Location = new System.Drawing.Point(8, 111);
+            this.btnPurchase.Location = new System.Drawing.Point(5, 120);
             this.btnPurchase.Name = "btnPurchase";
-            this.btnPurchase.Size = new System.Drawing.Size(56, 60);
+            this.btnPurchase.Size = new System.Drawing.Size(87, 48);
             this.btnPurchase.TabIndex = 12;
             this.btnPurchase.Text = "&P. 购买";
             this.btnPurchase.UseVisualStyleBackColor = true;
@@ -251,9 +266,10 @@
             // ckFakePurchase
             // 
             this.ckFakePurchase.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ckFakePurchase.Location = new System.Drawing.Point(8, 57);
+            this.ckFakePurchase.AutoSize = true;
+            this.ckFakePurchase.Location = new System.Drawing.Point(11, 86);
             this.ckFakePurchase.Name = "ckFakePurchase";
-            this.ckFakePurchase.Size = new System.Drawing.Size(56, 48);
+            this.ckFakePurchase.Size = new System.Drawing.Size(75, 21);
             this.ckFakePurchase.TabIndex = 13;
             this.ckFakePurchase.Text = "卡单模式";
             this.ckFakePurchase.UseVisualStyleBackColor = true;
@@ -264,7 +280,7 @@
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(70, 22);
+            this.splitContainer2.Location = new System.Drawing.Point(99, 22);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -275,7 +291,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.txtSubsOutput);
-            this.splitContainer2.Size = new System.Drawing.Size(482, 176);
+            this.splitContainer2.Size = new System.Drawing.Size(453, 176);
             this.splitContainer2.SplitterDistance = 86;
             this.splitContainer2.TabIndex = 6;
             // 
@@ -288,7 +304,7 @@
             this.txtSubsInput.Name = "txtSubsInput";
             this.txtSubsInput.PlaceholderText = "一行一条, 可选前缀 s = sub, b = bundle, 不写前缀默认 sub, 例如 54029";
             this.txtSubsInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsInput.Size = new System.Drawing.Size(482, 86);
+            this.txtSubsInput.Size = new System.Drawing.Size(453, 86);
             this.txtSubsInput.TabIndex = 11;
             this.txtSubsInput.WordWrap = false;
             // 
@@ -300,14 +316,14 @@
             this.txtSubsOutput.Name = "txtSubsOutput";
             this.txtSubsOutput.ReadOnly = true;
             this.txtSubsOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsOutput.Size = new System.Drawing.Size(482, 86);
+            this.txtSubsOutput.Size = new System.Drawing.Size(453, 86);
             this.txtSubsOutput.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 172);
+            this.label5.Location = new System.Drawing.Point(32, 181);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 17);
             this.label5.TabIndex = 4;
@@ -316,7 +332,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 25);
+            this.label4.Location = new System.Drawing.Point(32, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 3;
@@ -650,5 +666,6 @@
         private Button btnSendCmd;
         private TextBox txtCmdRequest;
         private TextBox txtCmdResponse;
+        private CheckBox ckSkipOwned;
     }
 }
