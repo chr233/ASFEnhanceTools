@@ -44,7 +44,7 @@ namespace ASFEnhanceTools.Forms
 
                     if (responseASF != null && responseASF.Success && responseASF.Result != null)
                     {
-                        Text = string.Format("Url: {0} - ASF: {1}", _httpClient.BaseAddress, responseASF.Result.Version);
+                        Text = string.Format("ASF: {0}", responseASF.Result.Version);
                         flag = true;
                         break;
                     }
@@ -417,6 +417,9 @@ namespace ASFEnhanceTools.Forms
 
                         if (response.Result.TryGetValue(bot.BotName, out var result))
                         {
+                            var cResult = result.AddCartResult;
+                            sb.AppendLine(string.Format("购买选项: {0} {1}", cResult.PurchaseForSelf ? "为自己购买" : "-", cResult.PurchaseAsGift ? "作为礼物购买" : "-"));
+                            
                             var pResult = result.PurchaseResult;
                             sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
                             sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));

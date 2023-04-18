@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lvPlugins = new System.Windows.Forms.ListView();
             this.colName = new System.Windows.Forms.ColumnHeader();
             this.colVersion = new System.Windows.Forms.ColumnHeader();
@@ -66,6 +67,9 @@
             this.colSubId = new System.Windows.Forms.ColumnHeader();
             this.colSubName = new System.Windows.Forms.ColumnHeader();
             this.colIsFree = new System.Windows.Forms.ColumnHeader();
+            this.menuSubInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.添加到购物车ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.在浏览器中打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tpCmd = new System.Windows.Forms.TabPage();
             this.btnSendCmd = new System.Windows.Forms.Button();
             this.txtCmdRequest = new System.Windows.Forms.TextBox();
@@ -88,6 +92,7 @@
             this.splitContainer2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuSubInfo.SuspendLayout();
             this.tpCmd.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,7 +105,7 @@
             this.lvPlugins.FullRowSelect = true;
             this.lvPlugins.Location = new System.Drawing.Point(0, 0);
             this.lvPlugins.Name = "lvPlugins";
-            this.lvPlugins.Size = new System.Drawing.Size(564, 161);
+            this.lvPlugins.Size = new System.Drawing.Size(614, 161);
             this.lvPlugins.TabIndex = 4;
             this.lvPlugins.UseCompatibleStateImageBehavior = false;
             this.lvPlugins.View = System.Windows.Forms.View.Details;
@@ -128,7 +133,7 @@
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(578, 472);
+            this.tabControl.Size = new System.Drawing.Size(628, 472);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 2;
             // 
@@ -138,7 +143,7 @@
             this.tpASFInfo.Location = new System.Drawing.Point(4, 26);
             this.tpASFInfo.Name = "tpASFInfo";
             this.tpASFInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpASFInfo.Size = new System.Drawing.Size(570, 442);
+            this.tpASFInfo.Size = new System.Drawing.Size(620, 442);
             this.tpASFInfo.TabIndex = 0;
             this.tpASFInfo.Text = "ASF 信息";
             this.tpASFInfo.UseVisualStyleBackColor = true;
@@ -157,7 +162,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lvPlugins);
-            this.splitContainer1.Size = new System.Drawing.Size(564, 436);
+            this.splitContainer1.Size = new System.Drawing.Size(614, 436);
             this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -174,7 +179,7 @@
             this.lvBots.FullRowSelect = true;
             this.lvBots.Location = new System.Drawing.Point(0, 0);
             this.lvBots.Name = "lvBots";
-            this.lvBots.Size = new System.Drawing.Size(564, 271);
+            this.lvBots.Size = new System.Drawing.Size(614, 271);
             this.lvBots.TabIndex = 3;
             this.lvBots.UseCompatibleStateImageBehavior = false;
             this.lvBots.View = System.Windows.Forms.View.Details;
@@ -216,7 +221,7 @@
             this.tpPurchase.Location = new System.Drawing.Point(4, 26);
             this.tpPurchase.Name = "tpPurchase";
             this.tpPurchase.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPurchase.Size = new System.Drawing.Size(570, 442);
+            this.tpPurchase.Size = new System.Drawing.Size(620, 442);
             this.tpPurchase.TabIndex = 1;
             this.tpPurchase.Text = "购物功能";
             this.tpPurchase.UseVisualStyleBackColor = true;
@@ -234,7 +239,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(7, 235);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(558, 204);
+            this.groupBox2.Size = new System.Drawing.Size(608, 204);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "购买游戏 【卡单功能需要 ASFEnhance 1.7.14.0 以及之后的版本才支持】";
@@ -291,7 +296,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.txtSubsOutput);
-            this.splitContainer2.Size = new System.Drawing.Size(453, 176);
+            this.splitContainer2.Size = new System.Drawing.Size(503, 176);
             this.splitContainer2.SplitterDistance = 86;
             this.splitContainer2.TabIndex = 6;
             // 
@@ -302,9 +307,9 @@
             this.txtSubsInput.Location = new System.Drawing.Point(0, 0);
             this.txtSubsInput.Multiline = true;
             this.txtSubsInput.Name = "txtSubsInput";
-            this.txtSubsInput.PlaceholderText = "一行一条, 可选前缀 s = sub, b = bundle, 不写前缀默认 sub, 例如 54029";
+            this.txtSubsInput.PlaceholderText = "一行一条, 前缀 s/123 = sub/123, b = bundle, 不写前缀默认 sub, 例如 54029";
             this.txtSubsInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsInput.Size = new System.Drawing.Size(453, 86);
+            this.txtSubsInput.Size = new System.Drawing.Size(503, 86);
             this.txtSubsInput.TabIndex = 11;
             this.txtSubsInput.WordWrap = false;
             // 
@@ -316,7 +321,7 @@
             this.txtSubsOutput.Name = "txtSubsOutput";
             this.txtSubsOutput.ReadOnly = true;
             this.txtSubsOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSubsOutput.Size = new System.Drawing.Size(453, 86);
+            this.txtSubsOutput.Size = new System.Drawing.Size(503, 86);
             this.txtSubsOutput.TabIndex = 13;
             // 
             // label5
@@ -353,7 +358,7 @@
             this.groupBox1.Controls.Add(this.lvSubList);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(557, 223);
+            this.groupBox1.Size = new System.Drawing.Size(607, 223);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "获取游戏信息";
@@ -361,7 +366,7 @@
             // txtGameType
             // 
             this.txtGameType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGameType.Location = new System.Drawing.Point(493, 18);
+            this.txtGameType.Location = new System.Drawing.Point(543, 18);
             this.txtGameType.Name = "txtGameType";
             this.txtGameType.PlaceholderText = "类型";
             this.txtGameType.ReadOnly = true;
@@ -388,7 +393,7 @@
             this.txtGameDesc.Name = "txtGameDesc";
             this.txtGameDesc.PlaceholderText = "游戏简介";
             this.txtGameDesc.ReadOnly = true;
-            this.txtGameDesc.Size = new System.Drawing.Size(341, 58);
+            this.txtGameDesc.Size = new System.Drawing.Size(391, 58);
             this.txtGameDesc.TabIndex = 9;
             // 
             // txtGameName
@@ -399,7 +404,7 @@
             this.txtGameName.Name = "txtGameName";
             this.txtGameName.PlaceholderText = "游戏名称";
             this.txtGameName.ReadOnly = true;
-            this.txtGameName.Size = new System.Drawing.Size(277, 23);
+            this.txtGameName.Size = new System.Drawing.Size(327, 23);
             this.txtGameName.TabIndex = 7;
             // 
             // groupBox3
@@ -469,10 +474,11 @@
             this.colSubId,
             this.colSubName,
             this.colIsFree});
+            this.lvSubList.ContextMenuStrip = this.menuSubInfo;
             this.lvSubList.FullRowSelect = true;
             this.lvSubList.Location = new System.Drawing.Point(70, 121);
             this.lvSubList.Name = "lvSubList";
-            this.lvSubList.Size = new System.Drawing.Size(481, 96);
+            this.lvSubList.Size = new System.Drawing.Size(531, 96);
             this.lvSubList.TabIndex = 10;
             this.lvSubList.UseCompatibleStateImageBehavior = false;
             this.lvSubList.View = System.Windows.Forms.View.Details;
@@ -492,6 +498,26 @@
             this.colIsFree.Text = "免费";
             this.colIsFree.Width = 40;
             // 
+            // menuSubInfo
+            // 
+            this.menuSubInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.添加到购物车ToolStripMenuItem,
+            this.在浏览器中打开ToolStripMenuItem});
+            this.menuSubInfo.Name = "menuSubInfo";
+            this.menuSubInfo.Size = new System.Drawing.Size(161, 48);
+            // 
+            // 添加到购物车ToolStripMenuItem
+            // 
+            this.添加到购物车ToolStripMenuItem.Name = "添加到购物车ToolStripMenuItem";
+            this.添加到购物车ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.添加到购物车ToolStripMenuItem.Text = "添加到购物车";
+            // 
+            // 在浏览器中打开ToolStripMenuItem
+            // 
+            this.在浏览器中打开ToolStripMenuItem.Name = "在浏览器中打开ToolStripMenuItem";
+            this.在浏览器中打开ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.在浏览器中打开ToolStripMenuItem.Text = "在浏览器中打开";
+            // 
             // tpCmd
             // 
             this.tpCmd.Controls.Add(this.btnSendCmd);
@@ -500,7 +526,7 @@
             this.tpCmd.Location = new System.Drawing.Point(4, 26);
             this.tpCmd.Name = "tpCmd";
             this.tpCmd.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCmd.Size = new System.Drawing.Size(570, 442);
+            this.tpCmd.Size = new System.Drawing.Size(620, 442);
             this.tpCmd.TabIndex = 3;
             this.tpCmd.Text = "命令行";
             this.tpCmd.UseVisualStyleBackColor = true;
@@ -545,7 +571,7 @@
             this.tpTodo.Location = new System.Drawing.Point(4, 26);
             this.tpTodo.Name = "tpTodo";
             this.tpTodo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTodo.Size = new System.Drawing.Size(570, 442);
+            this.tpTodo.Size = new System.Drawing.Size(620, 442);
             this.tpTodo.TabIndex = 2;
             this.tpTodo.Text = "开发中……";
             this.tpTodo.UseVisualStyleBackColor = true;
@@ -567,13 +593,13 @@
             this.cbBotSelector.FormattingEnabled = true;
             this.cbBotSelector.Location = new System.Drawing.Point(96, 6);
             this.cbBotSelector.Name = "cbBotSelector";
-            this.cbBotSelector.Size = new System.Drawing.Size(401, 25);
+            this.cbBotSelector.Size = new System.Drawing.Size(451, 25);
             this.cbBotSelector.TabIndex = 0;
             // 
             // btnReloadBots
             // 
             this.btnReloadBots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReloadBots.Location = new System.Drawing.Point(502, 6);
+            this.btnReloadBots.Location = new System.Drawing.Point(552, 6);
             this.btnReloadBots.Name = "btnReloadBots";
             this.btnReloadBots.Size = new System.Drawing.Size(75, 25);
             this.btnReloadBots.TabIndex = 1;
@@ -585,7 +611,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 511);
+            this.ClientSize = new System.Drawing.Size(634, 511);
             this.Controls.Add(this.btnReloadBots);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tabControl);
@@ -613,6 +639,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.menuSubInfo.ResumeLayout(false);
             this.tpCmd.ResumeLayout(false);
             this.tpCmd.PerformLayout();
             this.ResumeLayout(false);
@@ -667,5 +694,8 @@
         private TextBox txtCmdRequest;
         private TextBox txtCmdResponse;
         private CheckBox ckSkipOwned;
+        private ContextMenuStrip menuSubInfo;
+        private ToolStripMenuItem 添加到购物车ToolStripMenuItem;
+        private ToolStripMenuItem 在浏览器中打开ToolStripMenuItem;
     }
 }

@@ -30,6 +30,7 @@
         {
             this.btnGetASFEnhance = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkSavePasswd = new System.Windows.Forms.CheckBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -50,10 +51,11 @@
             // btnGetASFEnhance
             // 
             this.btnGetASFEnhance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetASFEnhance.Location = new System.Drawing.Point(12, 101);
+            this.btnGetASFEnhance.Location = new System.Drawing.Point(18, 99);
             this.btnGetASFEnhance.Name = "btnGetASFEnhance";
             this.btnGetASFEnhance.Size = new System.Drawing.Size(140, 37);
-            this.btnGetASFEnhance.TabIndex = 5;
+            this.btnGetASFEnhance.TabIndex = 4;
+            this.btnGetASFEnhance.TabStop = false;
             this.btnGetASFEnhance.Text = "获取 ASFEnhance";
             this.btnGetASFEnhance.UseVisualStyleBackColor = true;
             this.btnGetASFEnhance.Click += new System.EventHandler(this.btnGetASFEnhance_Click);
@@ -62,6 +64,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkSavePasswd);
             this.groupBox1.Controls.Add(this.lblAddress);
             this.groupBox1.Controls.Add(this.lblPassword);
             this.groupBox1.Controls.Add(this.txtAddress);
@@ -69,10 +72,21 @@
             this.groupBox1.Controls.Add(this.btnTestConnection);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 78);
+            this.groupBox1.Size = new System.Drawing.Size(510, 81);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ASF &IPC 设置";
+            // 
+            // chkSavePasswd
+            // 
+            this.chkSavePasswd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSavePasswd.AutoSize = true;
+            this.chkSavePasswd.Location = new System.Drawing.Point(233, 50);
+            this.chkSavePasswd.Name = "chkSavePasswd";
+            this.chkSavePasswd.Size = new System.Drawing.Size(75, 21);
+            this.chkSavePasswd.TabIndex = 2;
+            this.chkSavePasswd.Text = "记住密码";
+            this.chkSavePasswd.UseVisualStyleBackColor = true;
             // 
             // lblAddress
             // 
@@ -110,7 +124,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.PlaceholderText = "默认为空";
-            this.txtPassword.Size = new System.Drawing.Size(226, 23);
+            this.txtPassword.Size = new System.Drawing.Size(145, 23);
             this.txtPassword.TabIndex = 1;
             // 
             // btnTestConnection
@@ -118,8 +132,8 @@
             this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTestConnection.Location = new System.Drawing.Point(314, 19);
             this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(190, 53);
-            this.btnTestConnection.TabIndex = 2;
+            this.btnTestConnection.Size = new System.Drawing.Size(190, 52);
+            this.btnTestConnection.TabIndex = 3;
             this.btnTestConnection.Text = "&C. 开始连接";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
@@ -127,10 +141,11 @@
             // btnCheckASFEToolsUpdate
             // 
             this.btnCheckASFEToolsUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheckASFEToolsUpdate.Location = new System.Drawing.Point(158, 101);
+            this.btnCheckASFEToolsUpdate.Location = new System.Drawing.Point(164, 99);
             this.btnCheckASFEToolsUpdate.Name = "btnCheckASFEToolsUpdate";
             this.btnCheckASFEToolsUpdate.Size = new System.Drawing.Size(140, 37);
-            this.btnCheckASFEToolsUpdate.TabIndex = 6;
+            this.btnCheckASFEToolsUpdate.TabIndex = 5;
+            this.btnCheckASFEToolsUpdate.TabStop = false;
             this.btnCheckASFEToolsUpdate.Text = "检查 ASFE Tools 更新";
             this.btnCheckASFEToolsUpdate.UseVisualStyleBackColor = true;
             this.btnCheckASFEToolsUpdate.Click += new System.EventHandler(this.btnCheckASFEToolsUpdate_Click);
@@ -142,9 +157,10 @@
             this.tsLblVersion,
             this.toolStripStatusLabel2,
             this.tsLblGitHub});
-            this.ssBar.Location = new System.Drawing.Point(0, 151);
+            this.ssBar.Location = new System.Drawing.Point(0, 146);
             this.ssBar.Name = "ssBar";
             this.ssBar.Size = new System.Drawing.Size(534, 22);
+            this.ssBar.SizingGrip = false;
             this.ssBar.TabIndex = 1;
             this.ssBar.Text = "状态栏";
             // 
@@ -178,10 +194,11 @@
             // btnAfadian
             // 
             this.btnAfadian.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAfadian.Location = new System.Drawing.Point(429, 101);
+            this.btnAfadian.Location = new System.Drawing.Point(423, 99);
             this.btnAfadian.Name = "btnAfadian";
             this.btnAfadian.Size = new System.Drawing.Size(93, 37);
-            this.btnAfadian.TabIndex = 4;
+            this.btnAfadian.TabIndex = 7;
+            this.btnAfadian.TabStop = false;
             this.btnAfadian.Text = "爱发电";
             this.btnAfadian.UseVisualStyleBackColor = true;
             this.btnAfadian.Click += new System.EventHandler(this.btnAfadian_Click);
@@ -189,10 +206,11 @@
             // btnSteam
             // 
             this.btnSteam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSteam.Location = new System.Drawing.Point(332, 101);
+            this.btnSteam.Location = new System.Drawing.Point(326, 99);
             this.btnSteam.Name = "btnSteam";
             this.btnSteam.Size = new System.Drawing.Size(91, 37);
-            this.btnSteam.TabIndex = 3;
+            this.btnSteam.TabIndex = 6;
+            this.btnSteam.TabStop = false;
             this.btnSteam.Text = "Steam 主页";
             this.btnSteam.UseVisualStyleBackColor = true;
             this.btnSteam.Click += new System.EventHandler(this.btnSteam_Click);
@@ -201,7 +219,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 173);
+            this.ClientSize = new System.Drawing.Size(534, 168);
             this.Controls.Add(this.btnSteam);
             this.Controls.Add(this.btnAfadian);
             this.Controls.Add(this.btnGetASFEnhance);
@@ -241,5 +259,6 @@
         private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripStatusLabel tsLblGitHub;
         private Button btnSteam;
+        private CheckBox chkSavePasswd;
     }
 }

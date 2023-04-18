@@ -2,6 +2,7 @@ using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
 using System.Diagnostics;
 using System.Reflection;
+using ASFEnhanceTools.Properties;
 
 namespace ASFEnhanceTools.Forms
 {
@@ -52,16 +53,18 @@ namespace ASFEnhanceTools.Forms
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
             tsLblVersion.Text = version.ToString();
-            
-            txtAddress.Text = Properties.GlobalConfig.Default.IPCAddress;
-            txtPassword.Text = Properties.GlobalConfig.Default.IPCPassword;
+
+            txtAddress.Text = GlobalConfig.Default.IPCAddress;
+            txtPassword.Text = GlobalConfig.Default.IPCPassword;
+            chkSavePasswd.Checked = GlobalConfig.Default.SavePassword;
         }
 
         private void FormConnector_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.GlobalConfig.Default.IPCAddress = txtAddress.Text;
-            Properties.GlobalConfig.Default.IPCPassword = txtPassword.Text;
-            Properties.GlobalConfig.Default.Save();
+            GlobalConfig.Default.IPCAddress = txtAddress.Text;
+            GlobalConfig.Default.IPCPassword = chkSavePasswd.Checked ? txtPassword.Text : "";
+            GlobalConfig.Default.SavePassword = chkSavePasswd.Checked;
+            GlobalConfig.Default.Save();
         }
 
         private async void btnTestConnection_Click(object sender, EventArgs e)

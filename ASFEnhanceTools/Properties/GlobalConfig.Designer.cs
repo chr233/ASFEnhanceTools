@@ -46,5 +46,17 @@ namespace ASFEnhanceTools.Properties {
                 this["IPCPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SavePassword {
+            get {
+                return ((bool)(this["SavePassword"]));
+            }
+            set {
+                this["SavePassword"] = value;
+            }
+        }
     }
 }

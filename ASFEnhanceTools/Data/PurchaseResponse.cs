@@ -12,6 +12,8 @@
         {
             public Dictionary<string, bool> SubIds { get; set; } = new();
             public Dictionary<string, bool> BundleIds { get; set; } = new();
+            public bool PurchaseForSelf { get; set; }
+            public bool PurchaseAsGift { get; set; }
         }
 
         public sealed record PurchaseResultData
