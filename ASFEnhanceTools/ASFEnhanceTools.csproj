@@ -33,8 +33,6 @@
 
 	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<None Include="..\Directory.Build.props" Link="Directory.Build.props" />
-		<None Include="..\Directory.Packages.props" Link="Directory.Packages.props" />
 	</ItemGroup>
 
 	<ItemGroup>

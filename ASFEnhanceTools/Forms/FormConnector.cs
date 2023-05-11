@@ -51,7 +51,7 @@ namespace ASFEnhanceTools.Forms
 
         private void FormConnector_Load(object sender, EventArgs e)
         {
-            var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0");
+            var version = Assembly.GetExecutingAssembly().GetName().Version ?? new Version("0.0.0.0");
             tsLblVersion.Text = version.ToString();
 
             txtAddress.Text = GlobalConfig.Default.IPCAddress;
@@ -76,7 +76,8 @@ namespace ASFEnhanceTools.Forms
                 string passwd = txtPassword.Text;
                 if (!string.IsNullOrEmpty(addr) && Uri.TryCreate(addr, UriKind.RelativeOrAbsolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
                 {
-                    _httpClient = new() {
+                    _httpClient = new()
+                    {
                         BaseAddress = uriResult,
                         DefaultRequestHeaders =
                         {
