@@ -1,8 +1,8 @@
 using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
+using ASFEnhanceTools.Properties;
 using System.Diagnostics;
 using System.Reflection;
-using ASFEnhanceTools.Properties;
 
 namespace ASFEnhanceTools.Forms
 {

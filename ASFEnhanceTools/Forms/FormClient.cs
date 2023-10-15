@@ -20,7 +20,8 @@ namespace ASFEnhanceTools.Forms
 
         public FormClient(Uri baseAddr, string passwd)
         {
-            _httpClient = new() {
+            _httpClient = new()
+            {
                 BaseAddress = baseAddr,
                 DefaultRequestHeaders =
                         {
@@ -66,7 +67,8 @@ namespace ASFEnhanceTools.Forms
                         lvPlugins.BeginUpdate();
                         foreach (var plugin in responsePlugins.Result)
                         {
-                            lvPlugins.Items.Add(new ListViewItem {
+                            lvPlugins.Items.Add(new ListViewItem
+                            {
                                 Text = plugin.Name,
                                 SubItems = { plugin.Version },
                             });
@@ -112,7 +114,8 @@ namespace ASFEnhanceTools.Forms
                             string balance = bot.IsConnectedAndLoggedOn ? bot.WalletBalance.ToString() : "---";
                             string currency = bot.IsConnectedAndLoggedOn ? bot.WalletCurrency.ToString() : "---";
 
-                            lvBots.Items.Add(new ListViewItem {
+                            lvBots.Items.Add(new ListViewItem
+                            {
                                 Text = bot.BotName,
                                 SubItems = {
                                     nickname,
@@ -185,11 +188,13 @@ namespace ASFEnhanceTools.Forms
                 {
                     for (int i = 0; i < MaxTries; i++)
                     {
-                        var payload = new AppDetailRequest {
+                        var payload = new AppDetailRequest
+                        {
                             AppIds = { appId },
                         };
 
-                        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/GetAppDetail") {
+                        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/GetAppDetail")
+                        {
                             Content = JsonContent.Create(payload)
                         };
                         var response = await _httpClient.SendToObj<AppDetailResponse>(request);
@@ -212,7 +217,8 @@ namespace ASFEnhanceTools.Forms
                                         lvSubList.BeginUpdate();
                                         foreach (var sub in detail.Subs)
                                         {
-                                            lvSubList.Items.Add(new ListViewItem() {
+                                            lvSubList.Items.Add(new ListViewItem()
+                                            {
                                                 Text = sub.SubId.ToString(),
                                                 Tag = string.Format("sub/{0} #{1}", sub.SubId, sub.Name),
                                                 SubItems =
@@ -297,7 +303,8 @@ namespace ASFEnhanceTools.Forms
                             string balance = bot.IsConnectedAndLoggedOn ? bot.WalletBalance.ToString() : "---";
                             string currency = bot.IsConnectedAndLoggedOn ? bot.WalletCurrency.ToString() : "---";
 
-                            lvBots.Items.Add(new ListViewItem {
+                            lvBots.Items.Add(new ListViewItem
+                            {
                                 Text = bot.BotName,
                                 SubItems = {
                                     nickname,
@@ -399,14 +406,16 @@ namespace ASFEnhanceTools.Forms
                 }
                 for (int i = 0; i < MaxTries; i++)
                 {
-                    var payload = new PurchaseRequest {
+                    var payload = new PurchaseRequest
+                    {
                         SubIds = subIds,
                         BundleIds = bundles,
                         SkipOwned = ckSkipOwned.Checked,
                         FakePurchase = ckFakePurchase.Checked,
                     };
 
-                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase") {
+                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase")
+                    {
                         Content = JsonContent.Create(payload)
                     };
                     var response = await _httpClient.SendToObj<PurchaseResponse>(request);
@@ -419,7 +428,7 @@ namespace ASFEnhanceTools.Forms
                         {
                             var cResult = result.AddCartResult;
                             sb.AppendLine(string.Format("购买选项: {0} {1}", cResult.PurchaseForSelf ? "为自己购买" : "-", cResult.PurchaseAsGift ? "作为礼物购买" : "-"));
-                            
+
                             var pResult = result.PurchaseResult;
                             sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
                             sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));
@@ -469,7 +478,8 @@ namespace ASFEnhanceTools.Forms
 
                 for (int i = 0; i < MaxTries; i++)
                 {
-                    var payload = new CommandRequest {
+                    var payload = new CommandRequest
+                    {
                         Command = cmd,
                     };
 
@@ -479,7 +489,8 @@ namespace ASFEnhanceTools.Forms
                     }
                     txtCmdResponse.Text += DateTime.Now.ToLocalTime() + "\r\n" + cmd + "\r\n";
 
-                    using var request = new HttpRequestMessage(HttpMethod.Post, "/Api/Command") {
+                    using var request = new HttpRequestMessage(HttpMethod.Post, "/Api/Command")
+                    {
                         Content = JsonContent.Create(payload)
                     };
                     var response = await _httpClient.SendToObj<CommandResponse>(request);
