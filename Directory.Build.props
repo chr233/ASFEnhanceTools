@@ -27,7 +27,7 @@
 		<RollForward>LatestMajor</RollForward>
 		<RuntimeIdentifiers>win-arm64;win-x64;win-x86</RuntimeIdentifiers>
 		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 	</PropertyGroup>
 
 	  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
