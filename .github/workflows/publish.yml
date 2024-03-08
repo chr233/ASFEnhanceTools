@@ -106,19 +106,6 @@ jobs:
         with:
           name: win-arm64
           path: out
-
-      - name: Create ${{ env.PROJECT_NAME }} GitHub release
-        id: github_release
-        uses: actions/create-release@v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref_name }}
-          release_name: ${{ env.PROJECT_NAME }} ${{ github.ref_name }}
-          prerelease: true
-          body_path: .github/RELEASE_TEMPLATE.md
-
-
           
       - name: Create ${{ env.PROJECT_NAME }} GitHub release
         uses: ncipollo/release-action@v1.12.0

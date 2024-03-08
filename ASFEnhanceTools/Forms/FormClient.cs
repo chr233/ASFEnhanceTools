@@ -1,4 +1,4 @@
-﻿using ASFEnhanceTools.Data;
+using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
 
 using System.Net.Http.Json;
@@ -369,9 +369,12 @@ namespace ASFEnhanceTools.Forms
                 {
                     StringBuilder sb = new();
 
-                    if (response.Result.TryGetValue(bot.BotName, out var result))
+                    if (response.Result.TryGetValue(bot.BotName, out var result) && result != null)
                     {
-                        sb.AppendLine(string.Format("结算结果: {0}", result ? Langs.Success : Langs.Failed));
+                        sb.AppendLine(string.Format("结算结果: {0}", result.Success ? Langs.Success : Langs.Failed));
+                        sb.AppendLine(string.Format("花费: {0} {1}", result.Cost, result.Currency));
+                        sb.AppendLine(string.Format("购物前余额: {0} {1}", result.BalancePrev, result.Currency));
+                        sb.AppendLine(string.Format("购物后余额: {0} {1}", result.BalanceNow, result.Currency));
                     }
                     else
                     {

@@ -555,7 +555,7 @@
             // btnSendCmd
             // 
             btnSendCmd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSendCmd.Location = new Point(467, 413);
+            btnSendCmd.Location = new Point(742, 688);
             btnSendCmd.Name = "btnSendCmd";
             btnSendCmd.Size = new Size(97, 23);
             btnSendCmd.TabIndex = 2;
@@ -566,21 +566,21 @@
             // txtCmdRequest
             // 
             txtCmdRequest.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtCmdRequest.Location = new Point(6, 413);
+            txtCmdRequest.Location = new Point(7, 688);
             txtCmdRequest.Name = "txtCmdRequest";
-            txtCmdRequest.Size = new Size(455, 23);
+            txtCmdRequest.Size = new Size(729, 23);
             txtCmdRequest.TabIndex = 1;
             txtCmdRequest.KeyPress += TxtCmdRequest_KeyPress;
             // 
             // txtCmdResponse
             // 
             txtCmdResponse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtCmdResponse.Location = new Point(0, 0);
+            txtCmdResponse.Location = new Point(5, 6);
             txtCmdResponse.Multiline = true;
             txtCmdResponse.Name = "txtCmdResponse";
             txtCmdResponse.ReadOnly = true;
             txtCmdResponse.ScrollBars = ScrollBars.Vertical;
-            txtCmdResponse.Size = new Size(570, 407);
+            txtCmdResponse.Size = new Size(833, 676);
             txtCmdResponse.TabIndex = 0;
             // 
             // tpTodo
