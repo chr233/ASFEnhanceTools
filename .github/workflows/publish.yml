@@ -6,8 +6,9 @@ on:
       - "*"
 env:
   PROJECT_NAME: "ASFEnhanceTools"
+  REPO_NAME: "ASFEnhanceTools"
   CONFIGURATION: Release
-  DOTNET_SDK_VERSION: 7.0.x
+  DOTNET_SDK_VERSION: 8.0.x
 
 jobs:
   build:
@@ -118,42 +119,21 @@ jobs:
           body_path: .github/RELEASE_TEMPLATE.md
 
 
-      - name: Upload ${{ env.PROJECT_NAME }}-win-x64-fde to GitHub release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create ${{ env.PROJECT_NAME }} GitHub release
+        uses: ncipollo/release-action@v1.12.0
         with:
-          upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/win-x64-fde.zip
-          asset_name: ${{ env.PROJECT_NAME }}-win-x64-fde.zip
-          asset_content_type: application/zip
+          artifacts: "out/*"
+          makeLatest: false
+          prerelease: true
+          tag: ${{ github.ref_name }}
+          name: ${{ env.PROJECT_NAME }} ${{ github.ref_name }}
+          body: |
+            ![Release](https://img.shields.io/badge/${{ env.REPO_NAME }}-${{ github.ref_name }}-brightgreen) ![Downloads](https://img.shields.io/github/downloads/chr233/${{ env.REPO_NAME }}/${{ github.ref_name }}/total?label=Downloads)
 
-      - name: Upload ${{ env.PROJECT_NAME }}-win-x64 to GitHub release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/win-x64.zip
-          asset_name: ${{ env.PROJECT_NAME }}-win-x64.zip
-          asset_content_type: application/zip
+            > 带 `fde` 表示可执行文件内置 .net 框架, 可以脱离框架运行, 但是体积比较大
+            > 如果电脑上已经安装过 .net 框架, 可以下载不带 `fde` 的版本, 节约硬盘空间
 
-      - name: Upload ${{ env.PROJECT_NAME }}-win-arm64-fde to GitHub release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/win-arm64-fde.zip
-          asset_name: ${{ env.PROJECT_NAME }}-win-arm64-fde.zip
-          asset_content_type: application/zip
+            ---
 
-      - name: Upload ${{ env.PROJECT_NAME }}-win-arm64 to GitHub release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.github_release.outputs.upload_url }}
-          asset_path: out/win-arm64.zip
-          asset_name: ${{ env.PROJECT_NAME }}-win-arm64.zip
-          asset_content_type: application/zip
+            release created bt github actions

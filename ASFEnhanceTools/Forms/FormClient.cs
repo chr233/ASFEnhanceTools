@@ -1,16 +1,17 @@
 ﻿using ASFEnhanceTools.Data;
 using ASFEnhanceTools.Extensions;
+
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
+
 using BotData = ASFEnhanceTools.Data.BotResponse.ResultData;
 
 namespace ASFEnhanceTools.Forms
 {
     public partial class FormClient : Form
     {
-        private HttpClient _httpClient { get; init; }
+        private HttpClient HttpClient { get; init; }
 
         private Dictionary<string, BotData> BotDataDict { get; init; } = new();
 
@@ -20,7 +21,18 @@ namespace ASFEnhanceTools.Forms
 
         public FormClient(Uri baseAddr, string passwd)
         {
-            _httpClient = new()
+#if DEBUG
+            // 创建 HttpClientHandler 对象并设置代理
+            var handler = new HttpClientHandler
+            {
+                //Proxy = new WebProxy("http://10.10.0.21:8080"),
+                //UseProxy = true
+            };
+#else
+            var handler = new HttpClientHandler();
+#endif
+
+            HttpClient = new(handler)
             {
                 BaseAddress = baseAddr,
                 DefaultRequestHeaders =
@@ -41,7 +53,7 @@ namespace ASFEnhanceTools.Forms
                 for (int i = 0; i < MaxTries; i++)
                 {
                     using var requestASF = new HttpRequestMessage(HttpMethod.Get, "/Api/ASF");
-                    var responseASF = await _httpClient.SendToObj<ASFResponse>(requestASF);
+                    var responseASF = await HttpClient.SendToObj<ASFResponse>(requestASF);
 
                     if (responseASF != null && responseASF.Success && responseASF.Result != null)
                     {
@@ -60,7 +72,7 @@ namespace ASFEnhanceTools.Forms
                 for (int i = 0; i < MaxTries; i++)
                 {
                     using var requestPlugins = new HttpRequestMessage(HttpMethod.Get, "/Api/Plugins");
-                    var responsePlugins = await _httpClient.SendToObj<PluginResponse>(requestPlugins);
+                    var responsePlugins = await HttpClient.SendToObj<PluginResponse>(requestPlugins);
 
                     if (responsePlugins != null && responsePlugins.Success && responsePlugins.Result != null)
                     {
@@ -95,7 +107,7 @@ namespace ASFEnhanceTools.Forms
                 for (int i = 0; i < MaxTries; i++)
                 {
                     using var requestBots = new HttpRequestMessage(HttpMethod.Get, "/Api/Bot/ASF");
-                    var responseBots = await _httpClient.SendToObj<BotResponse>(requestBots);
+                    var responseBots = await HttpClient.SendToObj<BotResponse>(requestBots);
 
                     if (responseBots != null && responseBots.Success && responseBots.Result != null)
                     {
@@ -171,7 +183,7 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
-        private async void btnQueryAppDetail_Click(object sender, EventArgs e)
+        private async void BtnQueryAppDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -193,11 +205,11 @@ namespace ASFEnhanceTools.Forms
                             AppIds = { appId },
                         };
 
-                        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/GetAppDetail")
+                        using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/Purchase/GetAppDetail/{bot.BotName}")
                         {
                             Content = JsonContent.Create(payload)
                         };
-                        var response = await _httpClient.SendToObj<AppDetailResponse>(request);
+                        var response = await HttpClient.SendToObj<AppDetailResponse>(request);
 
                         if (response != null && response.Success && response.Result != null)
                         {
@@ -261,7 +273,7 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
-        private void lvSubList_DoubleClick(object sender, EventArgs e)
+        private void LvSubList_DoubleClick(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvSubList.SelectedItems)
             {
@@ -273,7 +285,7 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
-        private async void btnReloadBots_Click(object sender, EventArgs e)
+        private async void BtnReloadBots_Click(object sender, EventArgs e)
         {
             try
             {
@@ -281,7 +293,7 @@ namespace ASFEnhanceTools.Forms
                 for (int i = 0; i < MaxTries; i++)
                 {
                     using var request = new HttpRequestMessage(HttpMethod.Get, "/Api/Bot/ASF");
-                    var response = await _httpClient.SendToObj<BotResponse>(request);
+                    var response = await HttpClient.SendToObj<BotResponse>(request);
 
                     if (response != null && response.Success && response.Result != null)
                     {
@@ -336,134 +348,53 @@ namespace ASFEnhanceTools.Forms
             }
         }
 
-        private void ckFakePurchase_CheckedChanged(object sender, EventArgs e)
+        private async Task DoPurchase(bool fakePurchase)
         {
-            if (ckFakePurchase.Checked)
+            var bot = FetchBot(cbBotSelector.SelectedIndex);
+
+            if (bot == null)
             {
-                btnPurchase.Text = Langs.FakePurchase;
+                MessageBox.Show(Langs.NoBotSelected);
+                return;
             }
-            else
+            for (int i = 0; i < MaxTries; i++)
             {
-                btnPurchase.Text = Langs.Purchase;
-            }
-        }
-
-        private async void btnPurchase_Click(object sender, EventArgs e)
-        {
-            List<uint> subIds = new();
-            List<uint> bundles = new();
-
-            Regex matchIds = new(@"(?:(s|sub|b|bundle)\/|)(\d+)", RegexOptions.IgnoreCase);
-
-            foreach (var line in txtSubsInput.Lines)
-            {
-                var match = matchIds.Match(line);
-                if (match.Success)
+                using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/Purchase/Purchase/{bot.BotName}")
                 {
-                    var type = match.Groups[1].Value;
-                    var strId = match.Groups[2].Value;
+                    Content = JsonContent.Create(new PurchaseRequest { FakePurchase = fakePurchase })
+                };
+                var response = await HttpClient.SendToObj<PurchaseResponse>(request);
 
-                    if (uint.TryParse(strId, out uint id))
+                if (response != null && response.Success && response.Result != null)
+                {
+                    StringBuilder sb = new();
+
+                    if (response.Result.TryGetValue(bot.BotName, out var result))
                     {
-                        switch (type.ToLowerInvariant())
-                        {
-                            case "b":
-                            case "bundle":
-                                bundles.Add(id);
-                                break;
-                            default:
-                            case "s":
-                            case "sub":
-                                subIds.Add(id);
-                                break;
-                        }
+                        sb.AppendLine(string.Format("结算结果: {0}", result ? Langs.Success : Langs.Failed));
                     }
-                }
-            }
+                    else
+                    {
+                        sb.AppendLine(Langs.botNotFound);
+                    }
 
-            if (subIds.Count + bundles.Count == 0)
-            {
-                MessageBox.Show(Langs.NoValidSubIdsOrBundleIds, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSubsInput.Focus();
-                return;
-            }
-
-            if (!ckFakePurchase.Checked &&
-                MessageBox.Show(Langs.DoYouReallyWantToPurchase, Langs.Confirm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
-            {
-                return;
-            }
-
-            try
-            {
-                btnPurchase.Enabled = false;
-                var bot = FetchBot(cbBotSelector.SelectedIndex);
-
-                if (bot == null)
-                {
-                    MessageBox.Show(Langs.NoBotSelected);
+                    txtSubsOutput.Text = sb.ToString();
                     return;
                 }
-                for (int i = 0; i < MaxTries; i++)
-                {
-                    var payload = new PurchaseRequest
-                    {
-                        SubIds = subIds,
-                        BundleIds = bundles,
-                        SkipOwned = ckSkipOwned.Checked,
-                        FakePurchase = ckFakePurchase.Checked,
-                    };
-
-                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/ASFEnhance/{bot.BotName}/Purchase")
-                    {
-                        Content = JsonContent.Create(payload)
-                    };
-                    var response = await _httpClient.SendToObj<PurchaseResponse>(request);
-
-                    if (response != null && response.Success && response.Result != null)
-                    {
-                        StringBuilder sb = new();
-
-                        if (response.Result.TryGetValue(bot.BotName, out var result))
-                        {
-                            var cResult = result.AddCartResult;
-                            sb.AppendLine(string.Format("购买选项: {0} {1}", cResult.PurchaseForSelf ? "为自己购买" : "-", cResult.PurchaseAsGift ? "作为礼物购买" : "-"));
-
-                            var pResult = result.PurchaseResult;
-                            sb.AppendLine(string.Format(Langs.PurchaseResultTemplate1, pResult.Success ? Langs.Success : Langs.Failed, pResult.BalancePrev, pResult.BalanceNow, pResult.Currency));
-                            sb.AppendLine(string.Format(Langs.PurchaseResultTemplate2, pResult.Cost, pResult.Currency));
-                            int j = 1;
-                            foreach (var item in pResult.CartItems)
-                            {
-                                sb.AppendLine(string.Format(" {0}: {1}/{2} {3}", j++, item.Type, item.Id, item.Name));
-                            }
-                        }
-                        else
-                        {
-                            sb.AppendLine(Langs.botNotFound);
-                        }
-
-                        txtSubsOutput.Text = sb.ToString();
-                        return;
-                    }
-                }
-                MessageBox.Show(Langs.ConnectToASFFailed);
             }
-            finally
-            {
-                btnPurchase.Enabled = true;
-            }
+            MessageBox.Show(Langs.ConnectToASFFailed);
+
         }
 
-        private void txtCmdRequest_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtCmdRequest_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                btnSendCmd_Click(sender, e);
+                BtnSendCmd_Click(sender, e);
             }
         }
 
-        private async void btnSendCmd_Click(object sender, EventArgs e)
+        private async void BtnSendCmd_Click(object sender, EventArgs e)
         {
             string cmd = txtCmdRequest.Text.Trim();
 
@@ -493,7 +424,7 @@ namespace ASFEnhanceTools.Forms
                     {
                         Content = JsonContent.Create(payload)
                     };
-                    var response = await _httpClient.SendToObj<CommandResponse>(request);
+                    var response = await HttpClient.SendToObj<CommandResponse>(request);
 
                     if (response != null && response.Success && response.Result != null)
                     {
@@ -509,6 +440,288 @@ namespace ASFEnhanceTools.Forms
             finally
             {
                 btnSendCmd.Enabled = true;
+            }
+        }
+
+        private void BtnCopySelected_Click(object sender, EventArgs e)
+        {
+            List<string> data = [];
+            foreach (ListViewItem item in lvSubList.CheckedItems)
+            {
+                string? payload = item.Tag as string;
+                if (!string.IsNullOrEmpty(payload))
+                {
+                    data.Add((payload).Trim());
+                }
+            }
+
+            if (data.Count == 0)
+            {
+                MessageBox.Show(Langs.NotSelectedAntthing, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lvSubList.Focus();
+            }
+            else
+            {
+                Clipboard.SetText(string.Join("\r\n", data));
+            }
+        }
+
+        private void BtnInputSelected_Click(object sender, EventArgs e)
+        {
+            List<string> data = [];
+            foreach (ListViewItem item in lvSubList.CheckedItems)
+            {
+                string? payload = item.Tag as string;
+                if (!string.IsNullOrEmpty(payload))
+                {
+                    data.Add((payload).Trim());
+                }
+            }
+
+            if (data.Count == 0)
+            {
+                MessageBox.Show(Langs.NotSelectedAntthing, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lvSubList.Focus();
+            }
+            else
+            {
+                txtSubsInput.Text = (txtSubsInput.Text.Trim() + "\r\n" + string.Join("\r\n", data)).Trim();
+                tabControl.SelectedIndex = 2;
+            }
+        }
+
+        private async void BtnReloadCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnReloadCart.Enabled = false;
+                var bot = FetchBot(cbBotSelector.SelectedIndex);
+
+                if (bot == null)
+                {
+                    MessageBox.Show(Langs.NoBotSelected);
+                    return;
+                }
+
+                for (int i = 0; i < MaxTries; i++)
+                {
+                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/Purchase/GetCart/{bot.BotName}");
+                    var response = await HttpClient.SendToObj<GetCartResponse>(request);
+
+                    if (response != null && response.Success && response.Result != null)
+                    {
+                        if (response.Result.TryGetValue(bot.BotName, out var data))
+                        {
+                            lvCartItems.BeginUpdate();
+                            lvCartItems.Items.Clear();
+
+                            if (data.Items != null)
+                            {
+                                foreach (var item in data.Items)
+                                {
+                                    var id = (item.BundleId > 0 ? $"bundle/{item.BundleId}" : $"sub{item.PackageId}") ?? "??";
+                                    lvCartItems.Items.Add(new ListViewItem
+                                    {
+                                        Text = id,
+                                        Tag = item,
+                                        SubItems =
+                                        {
+                                            item.LineItemId,
+                                            item.PriceFormatted,
+                                            item.IsPrivate ? "√" : "×",
+                                            item.IsGift ? "√" : "×",
+                                        }
+                                    });
+                                }
+                            }
+
+                            lvCartItems.EndUpdate();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Langs.LoadCartFailed, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        return;
+                    }
+                }
+                MessageBox.Show(Langs.ConnectToASFFailed);
+            }
+            finally
+            {
+                btnReloadCart.Enabled = true;
+            }
+        }
+
+        private async void BtnClearCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClearCart.Enabled = false;
+                var bot = FetchBot(cbBotSelector.SelectedIndex);
+
+                if (bot == null)
+                {
+                    MessageBox.Show(Langs.NoBotSelected);
+                    return;
+                }
+
+                for (int i = 0; i < MaxTries; i++)
+                {
+                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/Purchase/ClearCart/{bot.BotName}");
+                    var response = await HttpClient.SendToObj<ClearCartResponse>(request);
+
+                    if (response != null && response.Success && response.Result != null)
+                    {
+                        if (response.Result.TryGetValue(bot.BotName, out var success))
+                        {
+                            lvCartItems.Items.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("清空购物车失败", Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        return;
+                    }
+                }
+                MessageBox.Show(Langs.ConnectToASFFailed);
+            }
+            finally
+            {
+                btnClearCart.Enabled = true;
+            }
+        }
+
+        private async void BtnImportCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnImportCart.Enabled = false;
+                var bot = FetchBot(cbBotSelector.SelectedIndex);
+
+                if (bot == null)
+                {
+                    MessageBox.Show(Langs.NoBotSelected);
+                    return;
+                }
+
+                List<AddCartRequest.ItemData> items = [];
+                var matchIds = RegexUtils.MatchSubBundleId();
+                foreach (var line in txtSubsInput.Lines)
+                {
+                    var match = matchIds.Match(line);
+                    if (match.Success)
+                    {
+                        var type = match.Groups[1].Value;
+                        var strId = match.Groups[2].Value;
+
+                        var item = new AddCartRequest.ItemData
+                        {
+                            IsGift = false,
+                            IsPrivate = false,
+                            GiftInfo = null,
+                        };
+
+                        if (uint.TryParse(strId, out uint id))
+                        {
+                            switch (type.ToLowerInvariant())
+                            {
+                                case "b":
+                                case "bundle":
+                                    item.BundleId = id;
+                                    break;
+                                default:
+                                case "s":
+                                case "sub":
+                                    item.PackageId = id;
+                                    break;
+                            }
+
+                            items.Add(item);
+                        }
+                    }
+                }
+
+                if (items.Count == 0)
+                {
+                    MessageBox.Show(Langs.NoValidSubIdsOrBundleIds, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                for (int i = 0; i < MaxTries; i++)
+                {
+                    using var request = new HttpRequestMessage(HttpMethod.Post, $"/Api/Purchase/AddCart/{bot.BotName}")
+                    {
+                        Content = JsonContent.Create(new AddCartRequest { Items = items }),
+                    };
+                    var response = await HttpClient.SendToObj<GetCartResponse>(request);
+
+                    if (response != null && response.Success && response.Result != null)
+                    {
+                        if (response.Result.TryGetValue(bot.BotName, out var data))
+                        {
+                            lvCartItems.BeginUpdate();
+                            lvCartItems.Items.Clear();
+
+                            if (data.Items != null)
+                            {
+                                foreach (var item in data.Items)
+                                {
+                                    var id = (item.BundleId > 0 ? $"bundle/{item.BundleId}" : $"sub{item.PackageId}") ?? "??";
+                                    lvCartItems.Items.Add(new ListViewItem
+                                    {
+                                        Text = id,
+                                        Tag = item,
+                                        SubItems =
+                                        {
+                                            item.LineItemId,
+                                            item.PriceFormatted,
+                                            item.IsPrivate ? "√" : "×",
+                                            item.IsGift ? "√" : "×",
+                                        }
+                                    });
+                                }
+                            }
+
+                            lvCartItems.EndUpdate();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Langs.LoadCartFailed, Langs.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        return;
+                    }
+                }
+                MessageBox.Show(Langs.ConnectToASFFailed);
+            }
+            finally
+            {
+                btnImportCart.Enabled = true;
+            }
+        }
+
+        private async void BtnPurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPurchase.Enabled = false;
+                await DoPurchase(false);
+            }
+            finally
+            {
+                btnPurchase.Enabled = true;
+            }
+        }
+
+        private async void BtnFakePurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPurchase.Enabled = false;
+                await DoPurchase(true);
+            }
+            finally
+            {
+                btnPurchase.Enabled = true;
             }
         }
     }

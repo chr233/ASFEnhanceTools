@@ -196,11 +196,29 @@ namespace ASFEnhanceTools.Localization {
         }
         
         /// <summary>
+        ///   查找类似 读取购物车失败 的本地化字符串。
+        /// </summary>
+        internal static string LoadCartFailed {
+            get {
+                return ResourceManager.GetString("LoadCartFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 未选择机器人 的本地化字符串。
         /// </summary>
         internal static string NoBotSelected {
             get {
                 return ResourceManager.GetString("NoBotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 你好像没有勾选任何项目 的本地化字符串。
+        /// </summary>
+        internal static string NotSelectedAntthing {
+            get {
+                return ResourceManager.GetString("NotSelectedAntthing", resourceCulture);
             }
         }
         

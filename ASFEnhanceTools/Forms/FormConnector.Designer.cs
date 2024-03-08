@@ -44,6 +44,7 @@
             tsLblGitHub = new ToolStripStatusLabel();
             btnAfadian = new Button();
             btnSteam = new Button();
+            label1 = new Label();
             groupBox1.SuspendLayout();
             ssBar.SuspendLayout();
             SuspendLayout();
@@ -58,11 +59,12 @@
             btnGetASFEnhance.TabStop = false;
             btnGetASFEnhance.Text = "获取 ASFEnhance";
             btnGetASFEnhance.UseVisualStyleBackColor = true;
-            btnGetASFEnhance.Click += btnGetASFEnhance_Click;
+            btnGetASFEnhance.Click += BtnGetASFEnhance_Click;
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(chkSavePasswd);
             groupBox1.Controls.Add(lblAddress);
             groupBox1.Controls.Add(lblPassword);
@@ -133,7 +135,7 @@
             btnTestConnection.TabIndex = 3;
             btnTestConnection.Text = "&C. 开始连接";
             btnTestConnection.UseVisualStyleBackColor = true;
-            btnTestConnection.Click += btnTestConnection_Click;
+            btnTestConnection.Click += BtnTestConnection_Click;
             // 
             // btnCheckASFEToolsUpdate
             // 
@@ -145,7 +147,7 @@
             btnCheckASFEToolsUpdate.TabStop = false;
             btnCheckASFEToolsUpdate.Text = "检查 ASFE Tools 更新";
             btnCheckASFEToolsUpdate.UseVisualStyleBackColor = true;
-            btnCheckASFEToolsUpdate.Click += btnCheckASFEToolsUpdate_Click;
+            btnCheckASFEToolsUpdate.Click += BtnCheckASFEToolsUpdate_Click;
             // 
             // ssBar
             // 
@@ -172,7 +174,7 @@
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(349, 17);
+            toolStripStatusLabel2.Size = new Size(373, 17);
             toolStripStatusLabel2.Spring = true;
             // 
             // tsLblGitHub
@@ -184,7 +186,7 @@
             tsLblGitHub.Size = new Size(67, 17);
             tsLblGitHub.Text = "By Chr233";
             tsLblGitHub.VisitedLinkColor = Color.Black;
-            tsLblGitHub.Click += tsLblGitHub_Click;
+            tsLblGitHub.Click += TsLblGitHub_Click;
             // 
             // btnAfadian
             // 
@@ -196,7 +198,7 @@
             btnAfadian.TabStop = false;
             btnAfadian.Text = "爱发电";
             btnAfadian.UseVisualStyleBackColor = true;
-            btnAfadian.Click += btnAfadian_Click;
+            btnAfadian.Click += BtnAfadian_Click;
             // 
             // btnSteam
             // 
@@ -208,7 +210,17 @@
             btnSteam.TabStop = false;
             btnSteam.Text = "Steam 主页";
             btnSteam.UseVisualStyleBackColor = true;
-            btnSteam.Click += btnSteam_Click;
+            btnSteam.Click += BtnSteam_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.FromArgb(192, 0, 0);
+            label1.Location = new Point(187, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(315, 17);
+            label1.TabIndex = 4;
+            label1.Text = "IPC接口更新, 仅适配 ASFEnhance 2.0.15.0 及以后的版本";
             // 
             // FormConnector
             // 
@@ -254,5 +266,6 @@
         private ToolStripStatusLabel tsLblGitHub;
         private Button btnSteam;
         private CheckBox chkSavePasswd;
+        private Label label1;
     }
 }

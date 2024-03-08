@@ -8,7 +8,7 @@ namespace ASFEnhanceTools.Forms
 {
     public partial class FormConnector : Form
     {
-        private HttpClient _httpClient { get; set; } = new();
+        private HttpClient HttpClient { get; set; } = new();
 
         public FormConnector()
         {
@@ -20,30 +20,30 @@ namespace ASFEnhanceTools.Forms
             Process.Start(new ProcessStartInfo(uri) { UseShellExecute = true });
         }
 
-        private void btnCheckASFEToolsUpdate_Click(object sender, EventArgs e)
+        private void BtnCheckASFEToolsUpdate_Click(object sender, EventArgs e)
         {
             const string target = "https://github.com/chr233/ASFEnhanceTools/releases";
             OpenLink(target);
         }
 
-        private void btnGetASFEnhance_Click(object sender, EventArgs e)
+        private void BtnGetASFEnhance_Click(object sender, EventArgs e)
         {
             const string target = "https://github.com/chr233/ASFEnhance";
             OpenLink(target);
         }
-        private void tsLblGitHub_Click(object sender, EventArgs e)
+        private void TsLblGitHub_Click(object sender, EventArgs e)
         {
             const string target = "https://github.com/chr233";
             OpenLink(target);
         }
 
-        private void btnAfadian_Click(object sender, EventArgs e)
+        private void BtnAfadian_Click(object sender, EventArgs e)
         {
             const string target = "https://afdian.net/a/chr233";
             OpenLink(target);
         }
 
-        private void btnSteam_Click(object sender, EventArgs e)
+        private void BtnSteam_Click(object sender, EventArgs e)
         {
             const string target = "https://steamcommunity.com/id/Chr_/";
             OpenLink(target);
@@ -67,7 +67,7 @@ namespace ASFEnhanceTools.Forms
             GlobalConfig.Default.Save();
         }
 
-        private async void btnTestConnection_Click(object sender, EventArgs e)
+        private async void BtnTestConnection_Click(object sender, EventArgs e)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace ASFEnhanceTools.Forms
                 string passwd = txtPassword.Text;
                 if (!string.IsNullOrEmpty(addr) && Uri.TryCreate(addr, UriKind.RelativeOrAbsolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
                 {
-                    _httpClient = new()
+                    HttpClient = new()
                     {
                         BaseAddress = uriResult,
                         DefaultRequestHeaders =
@@ -89,7 +89,7 @@ namespace ASFEnhanceTools.Forms
                     try
                     {
                         var requestPlugin = new HttpRequestMessage(HttpMethod.Get, "/Api/Plugins");
-                        var responsePlugin = await _httpClient.SendToObj<PluginResponse>(requestPlugin);
+                        var responsePlugin = await HttpClient.SendToObj<PluginResponse>(requestPlugin);
 
                         if (responsePlugin != null && responsePlugin.Success)
                         {

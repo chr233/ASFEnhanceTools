@@ -1,4 +1,5 @@
 ﻿using ASFEnhanceTools.Data;
+
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -13,6 +14,9 @@ namespace ASFEnhanceTools.Extensions
         {
             try
             {
+#if DEBUG
+                Debug.WriteLine(message.Content?.ToString());
+#endif
                 var response = await httpClient.SendAsync(message);
                 var result = await ParseTpObj(response);
                 return result;
@@ -26,9 +30,12 @@ namespace ASFEnhanceTools.Extensions
 
         internal static async Task<T?> SendToObj<T>(this HttpClient httpClient, HttpRequestMessage message) where T : AbstractResponse
         {
-
             try
             {
+
+#if DEBUG
+                Debug.WriteLine(message.Content?.ToString());
+#endif
                 var response = await httpClient.SendAsync(message);
                 var result = await ParseTpObj<T>(response);
                 return result;
@@ -44,8 +51,11 @@ namespace ASFEnhanceTools.Extensions
         {
             try
             {
-                var stream = await response.Content.ReadAsStreamAsync();
-                var obj = await JsonSerializer.DeserializeAsync<T>(stream);
+                var json = await response.Content.ReadAsStringAsync();
+#if DEBUG
+                Debug.WriteLine(json);
+#endif
+                var obj = JsonSerializer.Deserialize<T>(json);
                 return obj;
             }
             catch (Exception ex)
@@ -59,8 +69,11 @@ namespace ASFEnhanceTools.Extensions
         {
             try
             {
-                var stream = await response.Content.ReadAsStreamAsync();
-                var obj = await JsonSerializer.DeserializeAsync<AbstractResponse>(stream);
+                var json = await response.Content.ReadAsStringAsync();
+#if DEBUG
+                Debug.WriteLine(json);
+#endif
+                var obj = JsonSerializer.Deserialize<AbstractResponse>(json);
                 return obj;
             }
             catch (Exception ex)
