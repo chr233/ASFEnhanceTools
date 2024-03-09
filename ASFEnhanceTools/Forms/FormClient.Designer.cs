@@ -83,6 +83,7 @@
             label3 = new Label();
             cbBotSelector = new ComboBox();
             btnReloadBots = new Button();
+            columnHeader6 = new ColumnHeader();
             tabControl.SuspendLayout();
             tpASFInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -408,7 +409,7 @@
             // lvCartItems
             // 
             lvCartItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lvCartItems.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            lvCartItems.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             lvCartItems.FullRowSelect = true;
             lvCartItems.Location = new Point(138, 22);
             lvCartItems.Name = "lvCartItems";
@@ -434,11 +435,13 @@
             // 
             // columnHeader4
             // 
-            columnHeader4.Text = "私密购买";
+            columnHeader4.Text = "私密";
+            columnHeader4.Width = 40;
             // 
             // columnHeader5
             // 
-            columnHeader5.Text = "作为礼物";
+            columnHeader5.Text = "礼物";
+            columnHeader5.Width = 40;
             // 
             // btnClearCart
             // 
@@ -624,6 +627,12 @@
             btnReloadBots.UseVisualStyleBackColor = true;
             btnReloadBots.Click += BtnReloadBots_Click;
             // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "LineItemId";
+            columnHeader6.TextAlign = HorizontalAlignment.Right;
+            columnHeader6.Width = 80;
+            // 
             // FormClient
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -717,5 +726,6 @@
         private GroupBox groupBox4;
         private Button btnPurchase;
         private Button btnFakePurchase;
+        private ColumnHeader columnHeader6;
     }
 }

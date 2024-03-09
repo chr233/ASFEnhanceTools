@@ -498,6 +498,7 @@ namespace ASFEnhanceTools.Forms
             try
             {
                 btnReloadCart.Enabled = false;
+                btnFakePurchase.Enabled = false;
                 var bot = FetchBot(cbBotSelector.SelectedIndex);
 
                 if (bot == null)
@@ -525,11 +526,12 @@ namespace ASFEnhanceTools.Forms
                                     var id = (item.BundleId > 0 ? $"bundle/{item.BundleId}" : $"sub{item.PackageId}") ?? "??";
                                     lvCartItems.Items.Add(new ListViewItem
                                     {
-                                        Text = id,
+                                        Text = item.LineItemId,
                                         Tag = item,
                                         SubItems =
                                         {
-                                            item.LineItemId,
+                                            id,
+                                            item.Name,
                                             item.PriceFormatted,
                                             item.IsPrivate ? "√" : "×",
                                             item.IsGift ? "√" : "×",
@@ -552,6 +554,7 @@ namespace ASFEnhanceTools.Forms
             finally
             {
                 btnReloadCart.Enabled = true;
+                btnFakePurchase.Enabled = true;
             }
         }
 

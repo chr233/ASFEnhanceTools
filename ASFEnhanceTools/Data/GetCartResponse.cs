@@ -1,4 +1,4 @@
-﻿using SteamKit2;
+using SteamKit2;
 
 namespace ASFEnhanceTools.Data;
 internal sealed record GetCartResponse : AbstractResponse<IDictionary<string, GetCartResponse.ResultData>>
@@ -15,6 +15,7 @@ internal sealed record GetCartResponse : AbstractResponse<IDictionary<string, Ge
         public uint? PackageId { get; set; }
         public uint? BundleId { get; set; }
         public string? LineItemId { get; set; }
+        public string? Name { get; set; }
         public bool IsValid { get; set; }
         public ulong TimeAdded { get; set; }
         public string? PriceCents { get; set; }
